@@ -2,3 +2,16 @@ menu-position{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
+.search-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1vh;
+}
+.searcher{
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 40vw;
+    text-align: center;
+    padding: 1vh;
+}

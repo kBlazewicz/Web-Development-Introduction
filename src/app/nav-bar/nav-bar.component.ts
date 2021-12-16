@@ -2,6 +2,7 @@ import { AddFormComponent } from './add-form/add-form.component';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ShoppingCartService } from '../shopping-cart.service';
+import { Dish } from '../dishes/dish';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,12 +11,16 @@ import { ShoppingCartService } from '../shopping-cart.service';
 })
 export class NavBarComponent implements OnInit {
   converter!: number;
-
-
+  menu!: Dish[];
+  filteredDishes!: Dish[];
   currency!: string;
   math = Math;
 
-  constructor(private data: ShoppingCartService, private dialog: MatDialog) { }
+  constructor(private data: ShoppingCartService, private dialog: MatDialog) {
+    this.data.currentMenu.subscribe(menu => this.menu = menu);
+    this.data.currentMenu.subscribe(menu => this.filteredDishes = menu);
+
+  }
 
   ngOnInit(): void {
     this.data.currentConverter.subscribe(converter => this.converter = converter)
@@ -35,7 +40,9 @@ export class NavBarComponent implements OnInit {
   }
 
   filter(query: string) {
-    console.log(query);
+    this.filteredDishes = (query) ?
+      this.filteredDishes.filter(p => p.name.toLowerCase().includes(query.toLowerCase())) : this.menu;
+
   }
 
 }
