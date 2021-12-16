@@ -16,6 +16,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { StarComponent } from './dishes/dish-details/star/star.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     RemoveBtnComponent,
     AddFormComponent,
     CartStatusComponent,
+    StarComponent,
   ],
   imports: [
     FormsModule,

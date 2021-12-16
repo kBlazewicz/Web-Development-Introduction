@@ -21,9 +21,9 @@ export class DishDetailsComponent implements OnInit {
   currency!: string;
   math = Math;
   cart!: number;
-  max=10;
-  rating=0;
-  readonly:boolean=false;
+  stars =[1,2,3,4,5]
+  rating=1;
+  hoverState = 0;
 
   constructor(private data: ShoppingCartService) { 
   }
@@ -47,5 +47,15 @@ export class DishDetailsComponent implements OnInit {
       this.dish.ordersLimit+=1;
       this.data.cartUpdate(this.cart-1);
     }
+  }
+
+  onStarEnter(starID: number){
+    this.hoverState = starID;
+  }
+  onStarLeave(){
+    this.hoverState = 0;
+  }
+  onStarClicked(starID: number){
+    this.rating=starID;
   }
 }

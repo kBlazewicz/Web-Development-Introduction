@@ -1,6 +1,7 @@
 <section class="nav-bar">
     <div class="left-side">
         <app-cart-status></app-cart-status>
-        <button  mat-button-raised (click)="openDialog()" class="add-dish">Add</button>
+        <button  mat-button-raised (click)="openDialog()" class="add-dish">Add new dish</button>
     </div>
+    <mat-slide-toggle (change)="onChange()">Change currency</mat-slide-toggle>
 </section>

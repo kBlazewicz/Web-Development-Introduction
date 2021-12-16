@@ -18,6 +18,18 @@
                     <app-remove-btn [dish]=dish [initialDishLimit]="initialOrdersLimit"></app-remove-btn>
                     <p> Ingridients: {{ dish.ingridients }}</p>
                     <a target=”_blank” href ="{{dish.photo}}" class="link">Dish photo</a>
+                    <div>
+                        <ng-container *ngFor="let star of stars;">
+                            <app-star
+                            [starID] ="star" 
+                            [rating]="hoverState || rating"
+                            (starEnter)="onStarEnter($event)"
+                            (starLeave)="onStarLeave()"
+                            (starClicked)="onStarClicked($event)"
+                            >
+                            </app-star>
+                        </ng-container>
+                    </div>
                 </div>
             </div>
         </div>
