@@ -1,0 +1,64 @@
+
+.position{
+    border: solid black 1px;
+    margin: 3rem 3rem;
+    padding: 0.4rem;
+    background-color: bisque;
+    background-image: linear-gradient(to right, rgb(187, 169, 70) , rgb(240, 123, 77));
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px grey;
+
+}
+
+.position-sold{
+    background-image: linear-gradient(to right, rgb(204, 200, 179) , rgb(228, 194, 180));
+}
+
+p{
+    margin: 3px;
+    text-align: left;
+    padding: 0.4rem;
+    font-family: 'Courier', Courier, monospace;
+}
+.fake-photo{
+    border: solid black 1px;
+    width: 17vw;
+    height: 15vw;
+    border-radius: 45%;
+    background-color: lightcyan;
+}
+#dish-name{
+    font-weight: bold;
+}
+
+.order-btn{
+    height: 20%;
+}
+
+.photo-link{
+    word-wrap: initial;
+    max-width: 100%;
+}
+
+.btn-cstm{
+    background-color: rgb(103, 190, 95);
+    color: white;
+    border: 0px;
+}
+
+.out-off-supply{
+    margin-right: 0.5rem;
+}
+.additionals{
+ display: flex;
+ flex-direction: column;
+ align-items: flex-end;
+}
+
+.max-price{
+    border: 8px solid greenyellow;
+}
+
+.min-price{
+    border:8px solid red;
+}

@@ -1,0 +1,43 @@
+<section [ngClass]="{'position-sold': (dish.ordersLimit==0),
+                     'min-price': (dish.price==isMin),
+                     'max-price': (dish.price==isMax)}" class="position">
+    <div class="container ">
+        <div class="row align-items-center">
+            <div class="col"> 
+               <div class="position-frame">
+                    <div class="fake-photo">
+                        <img src="{{dish.photo}}"class="fake-photo" >
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <p>{{ dish.type | uppercase}},  {{ dish.category | uppercase}}</p>
+            </div>
+            <div class="col d-flex-col justify-content-end">
+                <div class="additionals [dish]">
+                    <app-remove-btn [dish]=dish [initialDishLimit]="initialOrdersLimit"></app-remove-btn>
+                    <p> Ingridients: {{ dish.ingridients }}</p>
+                    <a target=”_blank” href ="{{dish.photo}}" class="link">Dish photo</a>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col">
+                <p id="dish-name">Dish Name: {{ dish.name | uppercase }}</p>
+                <p>Dish Price: {{ math.round(dish.price * converter*100)/100 }}{{currency}}</p></div>
+            <div class="col-">
+                <p>Desctiprion: <br> {{ dish.caption }}</p>
+            </div>
+            <div class="col d-flex justify-content-end ">
+                <h3 *ngIf="dish.ordersLimit==0" class="out-off-supply ">Sold</h3>
+                <p *ngIf="dish.ordersLimit>0"  class="text-nowrap">Positions left for today: {{ dish.ordersLimit }}</p>
+                <button type="submit" class="btn btn-warning  waves order-btn" (click)="plus()"
+                 [ngClass]="{'btn-cstm': (dish.ordersLimit>=4),
+                            'disabled': (dish.ordersLimit==0)}">+</button>
+                <button type="submit" class="btn btn-danger waves order-btn" (click)="minus()"
+                 [ngClass]="{'disabled': (dish.ordersLimit==initialOrdersLimit)}">-</button>
+            </div>
+        </div>
+    </div>
+</section>
+
