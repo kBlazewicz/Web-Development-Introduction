@@ -10,23 +10,23 @@ export class StarComponent implements OnInit {
   @Input() starID!: number;
   @Input() rating!: number;
 
-  @Output() starEnter: EventEmitter<number>= new EventEmitter();
-  @Output() starLeave: EventEmitter<number>= new EventEmitter();
-  @Output() starClicked: EventEmitter<number>= new EventEmitter();
+  @Output() starEnter: EventEmitter<number> = new EventEmitter();
+  @Output() starLeave: EventEmitter<number> = new EventEmitter();
+  @Output() starClicked: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onStarEnter(){
+  onStarEnter() {
     this.starEnter.emit(this.starID);
   }
-  onStarLeave(){
+  onStarLeave() {
     this.starLeave.emit();
   }
 
-  onStarClicked(){
+  starred() {
     this.starClicked.emit(this.starID);
   }
 }

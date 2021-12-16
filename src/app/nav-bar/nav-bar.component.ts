@@ -11,7 +11,7 @@ import { ShoppingCartService } from '../shopping-cart.service';
 export class NavBarComponent implements OnInit {
   converter!: number;
 
-  
+
   currency!: string;
   math = Math;
 
@@ -22,17 +22,20 @@ export class NavBarComponent implements OnInit {
     this.data.currentCurrency.subscribe(currency => this.currency = currency)
   }
 
-  onChange(){
-    if (this.currency=="€"){
-    this.data.changeCurrency("$",0.89);
-    return;
+  onChange() {
+    if (this.currency == "€") {
+      this.data.changeCurrency("$", 0.89);
+      return;
     }
-    this.data.changeCurrency("€",1);
+    this.data.changeCurrency("€", 1);
   }
 
-  openDialog(){
-    this.dialog.open(AddFormComponent)
+  openDialog() {
+    this.dialog.open(AddFormComponent);
   }
-  
+
+  filter(query: string) {
+    console.log(query);
+  }
 
 }

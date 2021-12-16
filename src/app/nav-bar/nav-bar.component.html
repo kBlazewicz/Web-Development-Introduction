@@ -1,7 +1,10 @@
 <section class="nav-bar">
     <div class="left-side">
         <app-cart-status></app-cart-status>
-        <button  mat-button-raised (click)="openDialog()" class="add-dish">Add new dish</button>
+        <button mat-button-raised (click)="openDialog()" class="add-dish">Add new dish</button>
     </div>
+    <p>
+        <input #query (keyup)="filter(query.value)" type="text" placeholder="Search...">
+    </p>
     <mat-slide-toggle (change)="onChange()">Change currency</mat-slide-toggle>
 </section>

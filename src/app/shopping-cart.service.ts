@@ -7,7 +7,7 @@ import { Dish } from './dishes/dish';
   providedIn: 'root'
 })
 
-export class ShoppingCartService{
+export class ShoppingCartService {
   private cartSource = new BehaviorSubject(0);
   private currencySource = new BehaviorSubject("€");
   private converterSource = new BehaviorSubject(1);
@@ -22,20 +22,20 @@ export class ShoppingCartService{
   currentMenu!: { subscribe: (arg0: (menu: any) => any) => void; };
 
 
-  constructor(service: DishListService){
+  constructor(service: DishListService) {
     this.menuSource = new BehaviorSubject(service.getDishes());
     this.currentMenu = this.menuSource.asObservable();
 
   }
-  
-  changeCurrency(currency: string,converter:number){
+
+  changeCurrency(currency: string, converter: number) {
     console.log("service has changed currency");
     this.currencySource.next(currency);
     this.converterSource.next(converter);
   }
 
-  cartUpdate(upd: number){
+  cartUpdate(upd: number) {
     this.cartSource.next(upd);
   }
-  
+
 }

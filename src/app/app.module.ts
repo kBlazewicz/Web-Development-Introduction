@@ -9,15 +9,15 @@ import { AddFormComponent } from './nav-bar/add-form/add-form.component';
 import { CartStatusComponent } from './nav-bar/cart-status/cart-status.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatButtonModule} from '@angular/material/button';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { StarComponent } from './dishes/dish-details/star/star.component';
-
+// import { FilterDishesPipe } from './pipes/filterdishes.pipe';
 @NgModule({
   declarations: [
     AppComponent,

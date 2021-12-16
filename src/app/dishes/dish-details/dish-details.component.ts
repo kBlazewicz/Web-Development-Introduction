@@ -9,7 +9,7 @@ import { ShoppingCartService } from 'src/app/shopping-cart.service';
   styleUrls: ['./dish-details.component.css']
 })
 export class DishDetailsComponent implements OnInit {
-  @Input() dish!:Dish;
+  @Input() dish!: Dish;
   @Input() isActivePlus: boolean = false;
   @Input() isActiveMinus: boolean = false;
   @Input() nearToEnd: boolean = false;
@@ -21,41 +21,41 @@ export class DishDetailsComponent implements OnInit {
   currency!: string;
   math = Math;
   cart!: number;
-  stars =[1,2,3,4,5]
-  rating=1;
+  stars = [1, 2, 3, 4, 5]
+  rating = 1;
   hoverState = 0;
 
-  constructor(private data: ShoppingCartService) { 
+  constructor(private data: ShoppingCartService) {
   }
 
   ngOnInit(): void {
-  this.initialOrdersLimit=this.dish.ordersLimit;
-  this.data.currentConverter.subscribe(converter => this.converter = converter)
-  this.data.currentCurrency.subscribe(currency => this.currency = currency)
-  this.data.currentCart.subscribe(cart => this.cart = cart)
-}
+    this.initialOrdersLimit = this.dish.ordersLimit;
+    this.data.currentConverter.subscribe(converter => this.converter = converter)
+    this.data.currentCurrency.subscribe(currency => this.currency = currency)
+    this.data.currentCart.subscribe(cart => this.cart = cart)
+  }
 
-  plus(){
-    if(this.dish.ordersLimit>0){
-    this.dish.ordersLimit-=1;
-    this.data.cartUpdate(this.cart+1);
+  plus() {
+    if (this.dish.ordersLimit > 0) {
+      this.dish.ordersLimit -= 1;
+      this.data.cartUpdate(this.cart + 1);
     }
   }
 
-  minus(){
-    if(this.dish.ordersLimit<this.initialOrdersLimit){
-      this.dish.ordersLimit+=1;
-      this.data.cartUpdate(this.cart-1);
+  minus() {
+    if (this.dish.ordersLimit < this.initialOrdersLimit) {
+      this.dish.ordersLimit += 1;
+      this.data.cartUpdate(this.cart - 1);
     }
   }
 
-  onStarEnter(starID: number){
+  onStarEnter(starID: number) {
     this.hoverState = starID;
   }
-  onStarLeave(){
+  onStarLeave() {
     this.hoverState = 0;
   }
-  onStarClicked(starID: number){
-    this.rating=starID;
+  onStarClicked(starID: number) {
+    this.rating = starID;
   }
 }

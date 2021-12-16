@@ -9,7 +9,7 @@ import { ShoppingCartService } from 'src/app/shopping-cart.service';
 export class CartStatusComponent implements OnInit {
   cart!: number;
 
-  constructor(private data: ShoppingCartService) { 
+  constructor(private data: ShoppingCartService) {
   }
 
   ngOnInit(): void {

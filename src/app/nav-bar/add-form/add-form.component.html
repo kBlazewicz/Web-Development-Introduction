@@ -1,50 +1,49 @@
 <h3>Add your dish</h3>
 <form #f="ngForm" (ngSubmit)="submit(f)" class="dish-form">
 
-    <div class ="form-group form-content" >
+    <div class="form-group form-content">
         <input ngModel name="name" #name="ngModel" placeholder="Dish name" type="text" required>
         <div class="alert alert-danger" *ngIf="name.touched && !name.valid">Invalid form input</div>
     </div>
 
-    <div class ="form-group form-content" >
+    <div class="form-group form-content">
         <input ngModel name="cuisine" #cuisine="ngModel" placeholder="Cusine" type="text" required>
         <div class="alert alert-danger" *ngIf="cuisine.touched && !cuisine.valid">Invalid form input</div>
     </div>
 
-    <div class ="form-group form-content" >
+    <div class="form-group form-content">
         <input ngModel name="type" #type="ngModel" placeholder="Type" type="text" required>
         <div class="alert alert-danger" *ngIf="type.touched && !type.valid">Invalid form input</div>
     </div>
 
-    <div class ="form-group form-content" >
+    <div class="form-group form-content">
         <input ngModel name="category" #category="ngModel" placeholder="Category" type="text" required>
         <div class="alert alert-danger" *ngIf="category.touched && !category.valid">Invalid form input</div>
     </div>
 
-    <div >
+    <div class="form-group form-content">
         <input ngModel name="ingridients" #ingridients="ngModel" placeholder="Ingridients" type="text" required>
         <div class="alert alert-danger" *ngIf="ingridients.touched && !ingridients.valid">Invalid form input</div>
     </div>
 
-    <div class ="form-group form-content" >
+    <div class="form-group form-content">
         <input ngModel name="ordersLimit" #ordersLimit="ngModel" placeholder="ordersLimit" type="number" required>
         <div class="alert alert-danger" *ngIf="ordersLimit.touched && !ordersLimit.valid">Invalid form input</div>
     </div>
 
-    <div class ="form-group form-content" >
+    <div class="form-group form-content">
         <input ngModel name="price" #price="ngModel" placeholder="Price" type="number" required>
         <div class="alert alert-danger" *ngIf="price.touched && !price.valid">Invalid form input</div>
     </div>
 
-    <div  class ="form-group form-content" >
+    <div class="form-group form-content">
         <input ngModel name="caption" #caption="ngModel" placeholder="Caption" type="text" required>
         <div class="alert alert-danger" *ngIf="caption.touched && !caption.valid">Invalid form input</div>
     </div>
 
-    <div class ="form-group form-content"  >
+    <div class="form-group form-content">
         <input ngModel name="photo" #photo="ngModel" placeholder="Photo url" type="text" required>
         <div class="alert alert-danger" *ngIf="photo.touched && !photo.valid">Invalid form input</div>
     </div>
     <button class="btn btn-success" [disabled]="!f.valid">Submit</button>
 </form>
-

@@ -13,7 +13,7 @@ export class DishesComponent implements OnInit {
   isMax!: number;
   isMin!: number;
 
-  constructor( private data:ShoppingCartService) { 
+  constructor(private data: ShoppingCartService) {
     this.data.currentMenu.subscribe(menu => this.menu = menu)
   }
 
@@ -21,13 +21,13 @@ export class DishesComponent implements OnInit {
     let min = 9999999;
     let max = 0;
     this.menu.forEach(dish => {
-      if (dish.price<min)min=dish.price;
-      if (dish.price>max)max=dish.price;
+      if (dish.price < min) min = dish.price;
+      if (dish.price > max) max = dish.price;
     });
-    this.isMax=max;
-    this.isMin=min;
+    this.isMax = max;
+    this.isMin = min;
   }
 }
-  
+
 
 
