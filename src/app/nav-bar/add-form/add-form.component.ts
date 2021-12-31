@@ -1,8 +1,8 @@
+import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Dish } from 'src/app/dishes/dish';
 import { ShoppingCartService } from 'src/app/shopping-cart.service';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-form',
@@ -30,7 +30,7 @@ export class AddFormComponent implements OnInit {
 
   cart!: number;
   menu!: Dish[];
-  constructor(private data: ShoppingCartService, private dialog: MatDialog) { }
+  constructor(private data: ShoppingCartService, private router: Router) { }
 
   ngOnInit(): void {
     this.data.currentMenu.subscribe(menu => this.menu = menu);
@@ -39,9 +39,12 @@ export class AddFormComponent implements OnInit {
 
   submit(f: any) {
     let dish: Dish = f.value;
+    dish.id = this.menu.length + 1;
+    dish.maxLimit = dish.ordersLimit;
     this.menu.push(dish);
     console.log(f.value);
-    this.dialog.closeAll();
+    this.router.navigate(["/dishes"])
+
   }
 
 }

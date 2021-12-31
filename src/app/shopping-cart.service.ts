@@ -22,7 +22,7 @@ export class ShoppingCartService {
   currentMenu!: { subscribe: (arg0: (menu: any) => any) => void; };
 
 
-  constructor(service: DishListService) {
+  constructor(private service: DishListService) {
     this.menuSource = new BehaviorSubject(service.getDishes());
     this.currentMenu = this.menuSource.asObservable();
 
@@ -38,4 +38,7 @@ export class ShoppingCartService {
     this.cartSource.next(upd);
   }
 
+  getDish(id: number) {
+    return this.service.getDish(id);
+  }
 }

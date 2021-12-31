@@ -1,5 +1,5 @@
-
 export interface Dish {
+    id: number;
     name: string;
     cuisine: string;
     type: string;
@@ -9,4 +9,5 @@ export interface Dish {
     price: number;
     caption: string;
     photo: string;
+    maxLimit: number;
 }

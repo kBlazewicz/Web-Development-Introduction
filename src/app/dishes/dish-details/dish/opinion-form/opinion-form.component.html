@@ -1,0 +1,21 @@
+<app-nav-bar></app-nav-bar>
+<form #f="ngForm" (ngSubmit)="submit(f)" class="opinion-form">
+    <h3>Add your opinion</h3>
+
+    <div class="form-group form-content">
+        <input ngModel name="userName" #userName="ngModel" placeholder="User Name" type="text" required>
+        <div class="alert alert-danger" *ngIf="userName.touched && !userName.valid">Invalid form input</div>
+    </div>
+
+    <div class="form-group form-content">
+        <textarea ngModel name="opinion" #opinion="ngModel" placeholder="Your Opinion" type="text" cols="80" rows="5"
+            required></textarea>
+        <div class="alert alert-danger" *ngIf="opinion.touched && !opinion.valid">Invalid form input</div>
+    </div>
+
+    <div class="form-group form-content">
+        <input ngModel name="date" #date="ngModel" placeholder="date" type="date" optional>
+    </div>
+
+    <button class="btn btn-success" [disabled]="!f.valid">Submit</button>
+</form>

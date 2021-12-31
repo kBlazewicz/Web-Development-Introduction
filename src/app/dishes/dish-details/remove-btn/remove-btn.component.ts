@@ -9,7 +9,6 @@ import { Dish } from '../../dish';
 })
 export class RemoveBtnComponent implements OnInit {
   @Input() dish!: Dish;
-  @Input() initialDishLimit!: number;
 
 
   menu!: Dish[];
@@ -23,8 +22,8 @@ export class RemoveBtnComponent implements OnInit {
   }
 
   onClick() {
-    this.data.cartUpdate(this.cart - (this.initialDishLimit - this.dish.ordersLimit));
+    this.data.cartUpdate(this.cart - (this.dish.maxLimit - this.dish.ordersLimit));
     this.menu.splice(this.menu.indexOf(this.dish), 1);
-    console.log(this.initialDishLimit, this.dish.ordersLimit);
+    console.log(this.dish.maxLimit, this.dish.ordersLimit);
   }
 }

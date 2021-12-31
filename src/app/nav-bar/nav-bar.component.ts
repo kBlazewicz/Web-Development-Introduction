@@ -44,5 +44,10 @@ export class NavBarComponent implements OnInit {
       this.filteredDishes.filter(p => p.name.toLowerCase().includes(query.toLowerCase())) : this.menu;
 
   }
-
+  isChecked() {
+    if (this.currency == "$") {
+      return true;
+    }
+    return false;
+  }
 }

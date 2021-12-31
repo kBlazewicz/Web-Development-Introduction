@@ -1,3 +1,5 @@
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -17,7 +19,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { StarComponent } from './dishes/dish-details/star/star.component';
-// import { FilterDishesPipe } from './pipes/filterdishes.pipe';
+import { RouterModule } from '@angular/router';
+import { CartComponent } from './cart/cart.component';
+import { DishComponent } from './dishes/dish-details/dish/dish.component';
+import { OpinionFormComponent } from './dishes/dish-details/dish/opinion-form/opinion-form.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +35,11 @@ import { StarComponent } from './dishes/dish-details/star/star.component';
     AddFormComponent,
     CartStatusComponent,
     StarComponent,
+    HomeComponent,
+    NotFoundComponent,
+    CartComponent,
+    DishComponent,
+    OpinionFormComponent,
   ],
   imports: [
     FormsModule,
@@ -39,6 +51,15 @@ import { StarComponent } from './dishes/dish-details/star/star.component';
     MatFormFieldModule,
     MatSelectModule,
     ReactiveFormsModule,
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'dishes/dish/feedback', component: OpinionFormComponent },
+      { path: 'dishes/create', component: AddFormComponent },
+      { path: 'dishes/:id', component: DishComponent },
+      { path: 'dishes', component: DishesComponent },
+      { path: 'cart', component: CartComponent },
+      { path: '**', component: NotFoundComponent },
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

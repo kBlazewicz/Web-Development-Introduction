@@ -1,0 +1,42 @@
+.position{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    margin: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background-color: rgba(221, 233, 243, 0.705);
+}
+.back{
+    margin-left: 1rem;
+    margin-top: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+.title{
+    margin-top: 2rem;
+}
+.frame{
+    width: 70%;
+    height: auto;
+    border: solid black 1px;
+    border-radius: 20px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;}
+.frame > img{
+    width: 100%;
+    border-radius: 20px;
+}
+
+.opinion-btn{
+    margin: 2rem 0;
+    color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    min-width: 10rem;
+    padding: 0.5rem;
+}
+.btn-cstm{
+    background-color: rgb(103, 190, 95);
+    color: white;
+    border: 0px;
+}

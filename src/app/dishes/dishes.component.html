@@ -1,6 +1,10 @@
+<app-nav-bar></app-nav-bar>
 <div class="search-box">
     <input #query (keyup)="filter(query.value)" type="text" placeholder="Search..." class="searcher">
 </div>
-<div *ngFor="let position of filteredDishes" class="menu-position">
-    <app-dish-details [isMax]="isMax" [isMin]="isMin" [dish]="position"></app-dish-details>
+
+<div class="container">
+    <div *ngFor="let position of filteredDishes">
+        <app-dish-details [isMax]="isMax" [isMin]="isMin" [dish]="position" class="position"></app-dish-details>
+    </div>
 </div>

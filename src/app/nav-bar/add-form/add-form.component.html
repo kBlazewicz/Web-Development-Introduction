@@ -1,5 +1,6 @@
-<h3>Add your dish</h3>
+<button class="btn btn-warning btn-home" routerLink="">Home</button>
 <form #f="ngForm" (ngSubmit)="submit(f)" class="dish-form">
+    <h3>Add your dish</h3>
 
     <div class="form-group form-content">
         <input ngModel name="name" #name="ngModel" placeholder="Dish name" type="text" required>

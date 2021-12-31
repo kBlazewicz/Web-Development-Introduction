@@ -1,8 +1,12 @@
 <section class="nav-bar">
     <div class="left-side">
-        <app-cart-status></app-cart-status>
-        <button mat-button-raised (click)="openDialog()" class="add-dish">Add new dish</button>
+        <button mat-button-raised routerLink="/" class="left-btn">Home</button>
+        <button mat-button-raised routerLink="/dishes" class="left-btn">Menu</button>
+        <button mat-button-raised routerLink="/dishes/create" class="left-btn">Add new dish</button>
     </div>
-
-    <mat-slide-toggle (change)="onChange()">Change currency</mat-slide-toggle>
+    <div class="right-side">
+        <app-cart-status routerLink="/cart"></app-cart-status>
+        <mat-slide-toggle (change)="onChange()" [checked]="isChecked()" class="white-txt">Change currency
+        </mat-slide-toggle>
+    </div>
 </section>
