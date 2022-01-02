@@ -61,7 +61,7 @@ export class DishDetailsComponent implements OnInit {
   }
 
   seeDetails() {
-    this.router.navigate([this.dish.id], { relativeTo: this.route });
+    this.router.navigate(['/dishes/dish', this.dish.id]);
     console.log("details of dish")
   }
 }

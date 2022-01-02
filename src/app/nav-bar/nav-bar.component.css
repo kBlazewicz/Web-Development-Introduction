@@ -1,21 +1,110 @@
-.nav-bar{
+/* desktop first */
+
+header {
+    background-color: rgb(35, 77, 168);
+    padding: 7px 20px;
+    border: 1px solid grey;
     display: flex;
+    flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: 0.9rem 1rem;
-    background-color: rgb(35, 77, 168);
 }
-
-.left-btn{
-    background-color: rgb(127, 204, 12);
-    color:white;
-    border-radius: 20px;
-    margin-left: 0.4rem;
-}
-.mat-button-raised{
-    margin-left: 20px;
-}
-
 .white-txt{
-    color:white;
+    color: white;
+}
+
+.spacer {
+    flex-basis: 55%;
+}
+
+.links {
+    display: flex;
+    flex-basis: 30%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-link {
+    margin: 0 5px;
+    padding: 5px;
+    text-decoration: none;
+    font-weight: bolder;
+    color: rgba(255, 255, 255, 0.877);
+}
+
+.nav-link:hover {
+    color: rgb(219, 154, 32);
+}
+
+#menu-button {
+    position: absolute;
+    top: -100%;
+    left: -100%;
+}
+
+
+@media screen and (max-width: 768px) {
+    header {
+        display: grid;
+        grid-template-areas: "title   spacer   hamburger" "nav     nav     nav";
+    }
+    .logo {
+        grid-area: title;
+    }
+    .menu-icon {
+        grid-area: hamburger;
+    }
+    .nav-icon {
+        background: #333;
+        margin: 2px 0;
+        display: block;
+        height: 2px;
+        width: 18px;
+        position: relative;
+    }
+    .links {
+        grid-area: nav;
+        margin-top: 10px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        display: flex;
+        flex-direction: column;
+    }
+    .nav-link {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+        border-radius: 5px;
+        margin: 2px;
+    }
+    .nav-link:hover {
+        background-color: rgb(219, 154, 32);
+        color: white;
+        border: 1px solid grey;
+    }
+    .menu-button:checked~.links {
+        max-height: 250px;
+    }
+    .menu-button:checked~.menu-icon .middle {
+        transform: rotate(360deg);
+        background: transparent;
+    }
+    .menu-button:checked~.menu-icon .xleft {
+        transform: rotate(-135deg);
+    }
+    .menu-button:checked~.menu-icon .xright {
+        transform: rotate(135deg);
+    }
+    .menu-button:checked~.menu-icon .xleft {
+        top: 8px;
+    }
+    .middle,
+    .xleft,
+    .xright {
+        transition: all 0.5s ease-out;
+    }
+    .links {
+        transition: all 0.8s ease-out;
+    }
 }

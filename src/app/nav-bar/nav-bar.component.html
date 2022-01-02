@@ -1,12 +1,20 @@
-<section class="nav-bar">
-    <div class="left-side">
-        <button mat-button-raised routerLink="/" class="left-btn">Home</button>
-        <button mat-button-raised routerLink="/dishes" class="left-btn">Menu</button>
-        <button mat-button-raised routerLink="/dishes/create" class="left-btn">Add new dish</button>
-    </div>
-    <div class="right-side">
-        <app-cart-status routerLink="/cart"></app-cart-status>
-        <mat-slide-toggle (change)="onChange()" [checked]="isChecked()" class="white-txt">Change currency
+<header>
+    <app-cart-status routerLink="/cart"></app-cart-status>
+
+    <input class="menu-button" type="checkbox" id="menu-button" name="menu-buttton" />
+    <label class="menu-icon" for="menu-button">
+        <span class="nav-icon xleft"></span>
+        <span class="nav-icon middle"></span>
+        <span class="nav-icon xright"></span>
+    </label>
+
+    <div class="spacer"></div>
+
+    <nav class="links">
+        <a routerLink="/dishes/1" class="nav-link">Menu</a>
+        <a routerLink="/" class="nav-link">Home</a>
+        <a routerLink="/dishes/create" class="nav-link text-nowrap">Add new dish</a>
+        <mat-slide-toggle (change)="onChange()" [checked]="isChecked()" class="white-txt">{{currency}}
         </mat-slide-toggle>
-    </div>
-</section>
+    </nav>
+</header>

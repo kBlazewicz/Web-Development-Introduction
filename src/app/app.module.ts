@@ -53,13 +53,13 @@ import { OpinionFormComponent } from './dishes/dish-details/dish/opinion-form/op
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'dishes/dish/feedback', component: OpinionFormComponent },
+      { path: 'dishes/dish/:id/feedback', component: OpinionFormComponent },
       { path: 'dishes/create', component: AddFormComponent },
-      { path: 'dishes/:id', component: DishComponent },
-      { path: 'dishes', component: DishesComponent },
+      { path: 'dishes/:page', component: DishesComponent },
+      { path: 'dishes/dish/:id', component: DishComponent },
       { path: 'cart', component: CartComponent },
       { path: '**', component: NotFoundComponent },
-    ])
+    ], { scrollPositionRestoration: 'enabled' })
   ],
   providers: [],
   bootstrap: [AppComponent]

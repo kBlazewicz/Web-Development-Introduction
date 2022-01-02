@@ -43,7 +43,7 @@ export class AddFormComponent implements OnInit {
     dish.maxLimit = dish.ordersLimit;
     this.menu.push(dish);
     console.log(f.value);
-    this.router.navigate(["/dishes"])
+    this.router.navigate(["/dishes/1"])
 
   }
 

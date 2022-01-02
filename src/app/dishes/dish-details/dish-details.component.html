@@ -2,7 +2,7 @@
                      'min-price': (dish.price==isMin),
                      'max-price': (dish.price==isMax)}" class="position">
     <div class="fake-photo">
-        <img src="{{dish.photo}}" (click)="seeDetails()" class="fake-photo">
+        <img src="{{dish.photo}}" (click)="seeDetails()" class="fake-photo-img">
     </div>
 
     <p>{{ dish.type | uppercase}}, {{ dish.category | uppercase}}, {{ dish.cuisine | uppercase}}</p>

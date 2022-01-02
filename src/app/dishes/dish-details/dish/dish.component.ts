@@ -1,7 +1,8 @@
+import { PaginatorService } from './../../../paginator.service';
 import { ShoppingCartService } from 'src/app/shopping-cart.service';
 import { Dish } from 'src/app/dishes/dish';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dish',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./dish.component.css']
 })
 export class DishComponent implements OnInit {
-
+  page!: number;
   initialOrdersLimit!: number;
   converter!: number;
   currency!: string;
@@ -20,11 +21,12 @@ export class DishComponent implements OnInit {
   hoverState = 0;
 
 
-
   id!: number;
   dish!: Dish;
   constructor(private service: ShoppingCartService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router,
+    private paginator: PaginatorService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -33,6 +35,7 @@ export class DishComponent implements OnInit {
     this.service.currentConverter.subscribe(converter => this.converter = converter)
     this.service.currentCurrency.subscribe(currency => this.currency = currency)
     this.service.currentCart.subscribe(cart => this.cart = cart)
+    this.paginator.currentPage.subscribe(page => this.page = page)
   }
 
   plus() {
@@ -59,4 +62,11 @@ export class DishComponent implements OnInit {
     this.rating = starID;
   }
 
+  addOpinion() {
+    this.router.navigate(['feedback'], { relativeTo: this.route });
+  }
+
+  goBack() {
+    this.router.navigate(['/dishes', this.page])
+  }
 }

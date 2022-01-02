@@ -1,10 +1,34 @@
-<app-nav-bar></app-nav-bar>
-<div class="search-box">
-    <input #query (keyup)="filter(query.value)" type="text" placeholder="Search..." class="searcher">
-</div>
-
-<div class="container">
-    <div *ngFor="let position of filteredDishes">
-        <app-dish-details [isMax]="isMax" [isMin]="isMin" [dish]="position" class="position"></app-dish-details>
+<section class="section-bckg">
+    <app-nav-bar></app-nav-bar>
+    <div class="search-box">
+        <input #query (keyup)="filter(query.value)" type="text" placeholder="Search..." class="searcher">
     </div>
-</div>
+
+    <h4 class="page">Page: {{page}}</h4>
+
+    <div class="container">
+        <div
+            *ngFor="let position of filteredDishes | slice: ((page-1)*numberOfElements):((page-1)*numberOfElements+numberOfElements)">
+            <app-dish-details [isMax]="isMax" [isMin]="isMin" [dish]="position" class="position"></app-dish-details>
+        </div>
+    </div>
+
+    <div id=elements class="paginator">
+        <div class="one-row">
+            <button class="page-link" (click)="changePage(page-1)">Previous</button>
+            <button *ngFor="let page of pagesArray" (click)="changePage(page)" class="page-link"
+                [ngClass]="{'darker' : isActive(page) }">{{pagesArray[page-1]}}</button>
+            <button class="page-link" (click)="changePage(page+1)">Next</button>
+        </div>
+        <select [(ngModel)]="number" class="form-select width-medium" (change)="updatePages()">
+            <option value="undefined" disabled>Dishes on page</option>
+            <option value=3>3</option>
+            <option value=6>6</option>
+            <option value=9>9</option>
+            <option value=18>18</option>
+            <option value=24>24</option>
+            <option value=48>48</option>
+            <option value=96>96</option>
+        </select>
+    </div>
+</section>

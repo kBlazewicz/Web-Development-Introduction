@@ -1,5 +1,6 @@
 import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-opinion-form',
@@ -12,14 +13,21 @@ export class OpinionFormComponent implements OnInit {
     opinion: new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(500)]),
     date: new FormControl('', []),
   });
-  constructor() { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
+  dishID!: number | null;
+
 
   ngOnInit(): void {
-
+    this.dishID = this.route.snapshot.params['id'];
   }
 
-  submit(f: any) {
-    console.log(f);
+  submit() {
+    console.log(this.form);
+    this.form.reset();
+  }
+
+  goBack() {
+    this.router.navigate(['/dishes/dish', this.dishID])
   }
 
 }

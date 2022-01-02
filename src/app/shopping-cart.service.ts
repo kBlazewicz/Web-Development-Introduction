@@ -1,5 +1,5 @@
 import { DishListService } from './dish-list.service';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, last } from 'rxjs';
 import { Dish } from './dishes/dish';
 
@@ -25,7 +25,6 @@ export class ShoppingCartService {
   constructor(private service: DishListService) {
     this.menuSource = new BehaviorSubject(service.getDishes());
     this.currentMenu = this.menuSource.asObservable();
-
   }
 
   changeCurrency(currency: string, converter: number) {
