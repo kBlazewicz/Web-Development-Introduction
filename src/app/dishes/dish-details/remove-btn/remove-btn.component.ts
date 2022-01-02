@@ -1,6 +1,9 @@
+import { DishListService } from './../../../dish-list.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ShoppingCartService } from 'src/app/shopping-cart.service';
 import { Dish } from '../../dish';
+import { Route, Router } from '@angular/router';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-remove-btn',
@@ -10,20 +13,20 @@ import { Dish } from '../../dish';
 export class RemoveBtnComponent implements OnInit {
   @Input() dish!: Dish;
 
-
-  menu!: Dish[];
   cart!: number;
 
-  constructor(private data: ShoppingCartService) { }
+  constructor(private data: ShoppingCartService, private dishesService: DishListService,
+    private router: Router) {
+  }
 
   ngOnInit(): void {
-    this.data.currentMenu.subscribe(menu => this.menu = menu);
+    console.log(this.dish);
     this.data.currentCart.subscribe(cart => this.cart = cart);
   }
 
   onClick() {
     this.data.cartUpdate(this.cart - (this.dish.maxLimit - this.dish.ordersLimit));
-    this.menu.splice(this.menu.indexOf(this.dish), 1);
-    console.log(this.dish.maxLimit, this.dish.ordersLimit);
+    this.dishesService.deleteDish(this.dish.key);
+    this.router.navigate(['/dishes/1']);
   }
 }

@@ -1,8 +1,11 @@
+import { DishListService } from './../../dish-list.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ThrowStmt } from '@angular/compiler';
 import { Dish } from '../dish';
 import { ShoppingCartService } from 'src/app/shopping-cart.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { stringify } from 'querystring';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-dish-details',
@@ -24,10 +27,11 @@ export class DishDetailsComponent implements OnInit {
   stars = [1, 2, 3, 4, 5]
   rating = 1;
   hoverState = 0;
-
+  dishes: Dish[] = []
   constructor(private data: ShoppingCartService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private dishesService: DishListService) {
   }
 
   ngOnInit(): void {
@@ -56,12 +60,19 @@ export class DishDetailsComponent implements OnInit {
   onStarLeave() {
     this.hoverState = 0;
   }
-  onStarClicked(starID: number) {
-    this.rating = starID;
+  getDishesList() {
+    this.dishesService.getDishesList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.doc.id, ...c.payload.doc.data() }))
+      )
+    ).subscribe(dishes => {
+      this.dishes = (<Dish[]>dishes);
+    });
   }
 
   seeDetails() {
-    this.router.navigate(['/dishes/dish', this.dish.id]);
-    console.log("details of dish")
+    this.dishesService.updatecurrentDish(this.dish);
+    this.router.navigate(['/dishes/dish']);
+    console.log("details of dish");
   }
 }

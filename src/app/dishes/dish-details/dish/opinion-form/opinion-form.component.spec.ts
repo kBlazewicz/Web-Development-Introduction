@@ -8,9 +8,9 @@ describe('OpinionFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OpinionFormComponent ]
+      declarations: [OpinionFormComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

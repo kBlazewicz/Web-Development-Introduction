@@ -1,12 +1,14 @@
+import { ShoppingCartService } from 'src/app/shopping-cart.service';
 import { Dish } from 'src/app/dishes/dish';
 import { DishListService } from './dish-list.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaginatorService {
+  dishes!: Dish[];
   numberOfElements = 9;
   numberOfPages = 1;
 
@@ -23,8 +25,7 @@ export class PaginatorService {
   currentPagesArray = this.pagesArraySource.asObservable();
 
 
-
-  constructor(private service: DishListService) {
+  constructor(private service: ShoppingCartService, private dishesService: DishListService) {
     this.calculatePages();
   }
 
@@ -35,8 +36,9 @@ export class PaginatorService {
   }
 
   calculatePages() {
-    let pages = Math.ceil(this.service.getDishes().length /
+    let pages = Math.ceil(this.getNumberOfDishes() /
       this.numberOfElements);
+    console.log("PAGES: " + pages);
     this.numberOfPagesSource.next(pages);
     this.numberOfPages = pages;
     this.updatePagesArray();
@@ -54,5 +56,23 @@ export class PaginatorService {
 
   changePage(page: number) {
     this.pageSource.next(page);
+  }
+
+  getNumberOfDishes() {
+    let cnt = 0
+    this.dishesService.getDishesList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.doc.id, ...c.payload.doc.data() }))
+      )
+    ).subscribe(dishes => {
+      this.dishes = (<Dish[]>dishes);
+      this.dishes.forEach(() => {
+        cnt++;
+      });
+    });
+
+
+
+    return cnt;
   }
 }

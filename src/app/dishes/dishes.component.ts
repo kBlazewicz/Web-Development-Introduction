@@ -1,8 +1,10 @@
+import { DishListService } from './../dish-list.service';
 import { PaginatorService } from './../paginator.service';
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { Dish } from './dish';
 import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-dishes',
@@ -16,7 +18,7 @@ export class DishesComponent implements OnInit {
   numberOfElements!: number;
   number = this.numberOfElements;
   pagesArray!: number[];
-  menu!: Dish[];
+  dishes!: Dish[];
   filteredDishes!: Dish[];
   isMax!: number;
   isMin!: number;
@@ -24,10 +26,11 @@ export class DishesComponent implements OnInit {
   constructor(private data: ShoppingCartService,
     private paginator: PaginatorService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private dishesService: DishListService) {
 
-    this.data.currentMenu.subscribe(menu => this.menu = menu)
-    this.data.currentMenu.subscribe(menu => this.filteredDishes = menu);
+    this.getDishesList();
+    this.filteredDishes = this.dishes;
     this.paginator.currentNumberOfElements.subscribe(numberOfElements => this.numberOfElements = numberOfElements)
     this.paginator.currentNumberOfPages.subscribe(numberOfPages => this.numberOfPages = numberOfPages)
     this.paginator.currentPagesArray.subscribe(pagesArray => this.pagesArray = pagesArray)
@@ -42,29 +45,42 @@ export class DishesComponent implements OnInit {
       }
     });
 
-    let min = 9999999;
-    let max = 0;
-    this.menu.forEach(dish => {
-      if (dish.price < min) min = dish.price;
-      if (dish.price > max) max = dish.price;
+  }
+
+  getDishesList() {
+    this.dishesService.getDishesList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.doc.id, ...c.payload.doc.data() }))
+      )
+    ).subscribe(dishes => {
+      this.filteredDishes = (<Dish[]>dishes);
+      this.dishes = (<Dish[]>dishes);
+      this.isMin = this.getMinPrice(this.dishes);
+      this.isMax = this.getMaxPrice(this.dishes);
+      console.log(this.dishes, this.isMin, this.isMax);
     });
-    this.isMax = max;
-    this.isMin = min;
+  }
+
+  getMaxPrice(dishes: Dish[]) {
+    return dishes.sort((a, b) => (a.price - b.price))[0].price;
+  }
+
+  getMinPrice(dishes: Dish[]) {
+    return dishes.sort((a, b) => (a.price - b.price))[this.dishes.length - 1].price;
   }
 
   filter(query: string) {
     this.filteredDishes = (query) ?
       this.filteredDishes.filter(p => p.name.toLowerCase().includes(query.toLowerCase()) ||
         p.category.toLowerCase().includes(query.toLowerCase()) ||
-        p.ingridients.toLowerCase().includes(query.toLowerCase()) ||
+        p.ingredients.toLowerCase().includes(query.toLowerCase()) ||
         p.type.toLowerCase().includes(query.toLowerCase()) ||
-        p.cuisine.toLowerCase().includes(query.toLowerCase())) : this.menu;
+        p.cuisine.toLowerCase().includes(query.toLowerCase())) : this.dishes;
   }
 
   updatePages() {
     this.paginator.changeNumberOfElements(+this.number);
     this.paginator.calculatePages();
-    console.log("Number of elements on page has changed" + +this.numberOfElements);
   }
 
   changePage(page: number) {

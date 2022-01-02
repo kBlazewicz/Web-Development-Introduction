@@ -1,3 +1,5 @@
+
+import { environment } from '../environments/environment';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
@@ -19,11 +21,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { StarComponent } from './dishes/dish-details/star/star.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
 import { DishComponent } from './dishes/dish-details/dish/dish.component';
 import { OpinionFormComponent } from './dishes/dish-details/dish/opinion-form/opinion-form.component';
+import { AppRoutingModule } from './app-routing.module';
 
+import { ContactComponent } from './home/contact/contact.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 @NgModule({
   declarations: [
@@ -40,6 +46,9 @@ import { OpinionFormComponent } from './dishes/dish-details/dish/opinion-form/op
     CartComponent,
     DishComponent,
     OpinionFormComponent,
+    ContactComponent,
+
+
   ],
   imports: [
     FormsModule,
@@ -51,15 +60,11 @@ import { OpinionFormComponent } from './dishes/dish-details/dish/opinion-form/op
     MatFormFieldModule,
     MatSelectModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent },
-      { path: 'dishes/dish/:id/feedback', component: OpinionFormComponent },
-      { path: 'dishes/create', component: AddFormComponent },
-      { path: 'dishes/:page', component: DishesComponent },
-      { path: 'dishes/dish/:id', component: DishComponent },
-      { path: 'cart', component: CartComponent },
-      { path: '**', component: NotFoundComponent },
-    ], { scrollPositionRestoration: 'enabled' })
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

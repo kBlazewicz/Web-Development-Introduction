@@ -12,14 +12,11 @@ import { Dish } from '../dishes/dish';
 export class NavBarComponent implements OnInit {
   converter!: number;
   menu!: Dish[];
-  filteredDishes!: Dish[];
   currency!: string;
   math = Math;
 
-  constructor(private data: ShoppingCartService, private dialog: MatDialog) {
-    this.data.currentMenu.subscribe(menu => this.menu = menu);
-    this.data.currentMenu.subscribe(menu => this.filteredDishes = menu);
-
+  constructor(private data: ShoppingCartService,) {
+    this.menu = this.data.getDishes();
   }
 
   ngOnInit(): void {
@@ -35,11 +32,6 @@ export class NavBarComponent implements OnInit {
     this.data.changeCurrency("€", 1);
   }
 
-  filter(query: string) {
-    this.filteredDishes = (query) ?
-      this.filteredDishes.filter(p => p.name.toLowerCase().includes(query.toLowerCase())) : this.menu;
-
-  }
   isChecked() {
     if (this.currency == "$") {
       return true;

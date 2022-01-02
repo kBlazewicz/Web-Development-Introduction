@@ -1,6 +1,7 @@
 /* desktop first */
 
 header {
+    width: 100vw;
     background-color: rgb(35, 77, 168);
     padding: 7px 20px;
     border: 1px solid grey;
@@ -43,7 +44,7 @@ header {
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 530px) {
     header {
         display: grid;
         grid-template-areas: "title   spacer   hamburger" "nav     nav     nav";

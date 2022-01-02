@@ -1,22 +1,58 @@
 <app-nav-bar></app-nav-bar>
 <button class="btn btn-primary back" (click)="goBack()">BACK</button>
-<form #f="ngForm" (ngSubmit)="submit()" class="opinion-form">
-    <h3>Add your opinion</h3>
 
-    <div class="form-group form-content">
-        <input ngModel name="userName" #userName="ngModel" placeholder="User Name" type="text" required>
-        <div class="alert alert-danger" *ngIf="userName.touched && !userName.valid">Invalid form input</div>
-    </div>
+<section class="form-container opinion-form">
+    <h3 class="title">Add Review</h3>
+    <form [formGroup]="form" (ngSubmit)="submit()" id="reviewform">
 
-    <div class="form-group form-content">
-        <textarea ngModel name="opinion" #opinion="ngModel" placeholder="Your Opinion" type="text" cols="80" rows="5"
-            required></textarea>
-        <div class="alert alert-danger" *ngIf="opinion.touched && !opinion.valid">Invalid form input</div>
-    </div>
+        <div class="form-group">
+            <input type="text" class="form-control form-content" formControlName="username" placeholder="Your username">
+            <div *ngIf="form.controls['username'].hasError('required')  && form.controls['username'].touched "
+                class="alert alert-danger">
+                Invalid username
+            </div>
+        </div>
 
-    <div class="form-group form-content">
-        <input ngModel name="date" #date="ngModel" placeholder="date" type="date" optional>
-    </div>
+        <div class="form-group">
+            <input type="text" class="form-control form-content" formControlName="dishKey" placeholder="name of dish">
+            <div *ngIf="form.controls['dishKey'].hasError('required')  && form.controls['dishKey'].touched "
+                class="alert alert-danger">
+                Invalid dish name
+            </div>
+        </div>
 
-    <button class="btn btn-success" type="submit" [disabled]="!f.valid">Submit</button>
-</form>
+        <div class="form-group">
+            <textarea form="reviewform" class="form-control form-content" formControlName="text"
+                placeholder="Your opinion" rows="7"></textarea>
+            <div *ngIf="form.controls['text'].hasError('required') && form.controls['text'].touched "
+                class="alert alert-danger">
+                Invalid text
+            </div>
+            <div *ngIf="form.controls['text'].hasError('minlength')  && form.controls['text'].touched "
+                class="alert alert-danger">
+                To short text
+            </div>
+            <div *ngIf="form.controls['text'].hasError('maxlength')  && form.controls['text'].touched "
+                class="alert alert-danger">
+                To long text
+            </div>
+        </div>
+
+        <div class="form-group opinion-form">
+            <label for="">
+                Date
+                <input type="date" class="form-control form-content" formControlName="date" placeholder="Date">
+            </label>
+        </div>
+        <div class="opinion-form">
+            <button type="submit" [disabled]="!form.valid" class="btn btn-success">Submit</button>
+        </div>
+    </form>
+</section>
+
+
+<section class="opinions" *ngFor="let opinion of opinions">
+    <p>{{opinion.username}}</p>
+    <p>{{opinion.text}}</p>
+    <p>{{opinion.date}}</p>
+</section>

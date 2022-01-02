@@ -27,6 +27,7 @@ export class StarComponent implements OnInit {
   }
 
   starred() {
+    console.log(this.starID);
     this.starClicked.emit(this.starID);
   }
 }

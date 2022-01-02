@@ -1,0 +1,40 @@
+.footer{
+    position: absolute;
+    top: 20vh;
+    left: 0;
+    z-index: 0;
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background-color: rgba(247, 233, 240, 0.418);
+    clip-path: polygon(0 65%, 100% 0, 100% 100%, 0% 100%);
+    background-size: 100%;
+}
+
+.map-frame {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    height: 40vh;
+    width: 40vw;
+    border: 1px solid grey;
+    border-radius: 10px;
+    background-color: black;
+}
+
+.map-frame>img{
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+}
+.contact{
+    background-color: rgb(35, 77, 168);
+    padding: 0.5rem;
+    color: white;
+    border-radius: 10px;
+    margin: 1rem;
+    font-size: 2.5vh;
+}

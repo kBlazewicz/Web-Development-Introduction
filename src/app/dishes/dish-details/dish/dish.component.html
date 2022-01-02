@@ -25,12 +25,12 @@
         <button type="submit" class="btn btn-danger waves order-btn" (click)="minus()"
             [ngClass]="{'disabled': (dish.ordersLimit==dish.maxLimit)}">-</button>
     </div>
-    <button class="opinion-btn btn-primary" (click)="addOpinion()">Add Opinion</button>
+    <button class="opinion-btn btn-primary" (click)="addOpinion()">OPINIONS</button>
     <div class="additionals [dish]">
         <app-remove-btn [dish]=dish routerLink="/dishes/1"></app-remove-btn>
     </div>
-    <!-- 
-    <div class="opinions" *ngFor="let opinion of opinions">
+
+    <div class="opinions" *ngFor="let opinion of filteredOpinions">
         {{opinion}}
-    </div> -->
+    </div>
 </section>

@@ -1,33 +1,59 @@
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/compat/firestore';
+import { Dish } from 'src/app/dishes/dish';
 import { Injectable } from '@angular/core';
-import { Dish } from './dishes/dish';
+import { map } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DishListService {
-  dishes: Dish[] = [{ id: 12, name: "palak paneer", cuisine: "Indian", type: "main course", category: "vegan", ingridients: "nuts tofu  rice", ordersLimit: 10, price: 20, caption: "Palak paneer is a classic curry dish from North Indian cuisine made with fresh spinach, onions, spices, paneer and herbs. 'Palak' is a Hindi word for 'Spinach' and 'Paneer' is 'Indian cottage cheese'", photo: 'https://picsum.photos/id/237/1280/720', maxLimit: 10 },
-  { id: 1, name: "pierogi", cuisine: "Polish", type: "main course", category: "vegetarian", ingridients: "nuts tofu  rice", ordersLimit: 10, price: 30, caption: "Palak paneer is a classic curry dish from North Indian cuisine made with fresh spinach, onions, spices, paneer and herbs. 'Palak' is a Hindi word for 'Spinach' and 'Paneer' is 'Indian cottage cheese'", photo: 'https://picsum.photos/id/238/1280/720', maxLimit: 10 },
-  { id: 2, name: "curry", cuisine: "French", type: "side", category: "regular (with meat)", ingridients: "nuts tofu  rice", ordersLimit: 10, price: 20.15, caption: "Palak paneer is a classic curry dish from North Indian cuisine made with fresh spinach, onions, spices, paneer and herbs. 'Palak' is a Hindi word for 'Spinach' and 'Paneer' is 'Indian cottage cheese'", photo: 'https://picsum.photos/id/239/1280/720', maxLimit: 10 },
-  { id: 3, name: "palak paneer", cuisine: "Indian", type: "main course", category: "vegan", ingridients: "nuts tofu  rice", ordersLimit: 10, price: 40, caption: "Palak paneer is a classic curry dish from North Indian cuisine made with fresh spinach, onions, spices, paneer and herbs. 'Palak' is a Hindi word for 'Spinach' and 'Paneer' is 'Indian cottage cheese'", photo: 'https://picsum.photos/id/229/1280/720', maxLimit: 10 },
-  { id: 4, name: "pierogi", cuisine: "Polish", type: "main course", category: "vegetarian", ingridients: "nuts tofu  rice", ordersLimit: 10, price: 20, caption: "Palak paneer is a classic curry dish from North Indian cuisine made with fresh spinach, onions, spices, paneer and herbs. 'Palak' is a Hindi word for 'Spinach' and 'Paneer' is 'Indian cottage cheese'", photo: 'https://picsum.photos/id/229/1280/720', maxLimit: 10 },
-  { id: 5, name: "curry", cuisine: "French", type: "side", category: "regular (with meat)", ingridients: "nuts tofu  rice", ordersLimit: 10, price: 220, caption: "Palak paneer is a classic curry dish from North Indian cuisine made with fresh spinach, onions, spices, paneer and herbs. 'Palak' is a Hindi word for 'Spinach' and 'Paneer' is 'Indian cottage cheese'", photo: 'https://picsum.photos/id/239/1280/720', maxLimit: 10 },
-  { id: 6, name: "palak paneer", cuisine: "Indian", type: "main course", category: "vegan", ingridients: "nuts tofu  rice", ordersLimit: 10, price: 10, caption: "Palak paneer is a classic curry dish from North Indian cuisine made with fresh spinach, onions, spices, paneer and herbs. 'Palak' is a Hindi word for 'Spinach' and 'Paneer' is 'Indian cottage cheese'", photo: 'https://picsum.photos/id/137/1280/720', maxLimit: 10 },
-  { id: 7, name: "pierogi", cuisine: "Polish", type: "main course", category: "vegetarian", ingridients: "nuts tofu  rice", ordersLimit: 10, price: 20, caption: "Palak paneer is a classic curry dish from North Indian cuisine made with fresh spinach, onions, spices, paneer and herbs. 'Palak' is a Hindi word for 'Spinach' and 'Paneer' is 'Indian cottage cheese'", photo: 'https://picsum.photos/id/238/1280/720', maxLimit: 10 },
-  { id: 8, name: "curry", cuisine: "French", type: "side", category: "regular (with meat)", ingridients: "nuts tofu  rice", ordersLimit: 10, price: 10, caption: "Palak paneer is a classic curry dish from North Indian cuisine made with fresh spinach, onions, spices, paneer and herbs. 'Palak' is a Hindi word for 'Spinach' and 'Paneer' is 'Indian cottage cheese'", photo: 'https://picsum.photos/id/539/1280/720', maxLimit: 10 },
-  { id: 9, name: "palak paneer", cuisine: "Indian", type: "main course", category: "vegan", ingridients: "nuts tofu  rice", ordersLimit: 10, price: 39.13, caption: "Palak paneer is a classic curry dish from North Indian cuisine made with fresh spinach, onions, spices, paneer and herbs. 'Palak' is a Hindi word for 'Spinach' and 'Paneer' is 'Indian cottage cheese'", photo: 'https://picsum.photos/id/437/1280/720', maxLimit: 10 },
-  { id: 10, name: "pierogi", cuisine: "Polish", type: "main course", category: "vegetarian", ingridients: "nuts tofu  rice", ordersLimit: 10, price: 20, caption: "Palak paneer is a classic curry dish from North Indian cuisine made with fresh spinach, onions, spices, paneer and herbs. 'Palak' is a Hindi word for 'Spinach' and 'Paneer' is 'Indian cottage cheese'", photo: 'https://picsum.photos/id/838/1280/720', maxLimit: 10 },
-  { id: 11, name: "curry", cuisine: "French", type: "side", category: "regular (with meat)", ingridients: "nuts tofu  rice", ordersLimit: 10, price: 20, caption: "Palak paneer is a classic curry dish from North Indian cuisine made with fresh spinach, onions, spices, paneer and herbs. 'Palak' is a Hindi word for 'Spinach' and 'Paneer' is 'Indian cottage cheese'", photo: 'https://picsum.photos/id/39/1280/720', maxLimit: 10 }
-  ];
-  getDishes() {
-    return this.dishes;
+  dishes!: Dish[];
+  path = '/dishes'
+  currentDish!: Dish;
+
+  private dishesRef: AngularFirestoreCollection<any>;
+
+  constructor(private db: AngularFirestore) {
+    this.dishesRef = db.collection('dishes');
+    console.log(db.collection('dishes') + "       get dishes");
   }
-  getDish(id: number) {
-    let selectedDish = this.dishes[0];
-    this.dishes.forEach(dish => {
-      if (dish.id == id) {
-        selectedDish = dish;
-      }
+
+  updatecurrentDish(update: Dish) {
+    this.currentDish = update;
+  }
+
+  getDishesArray() {
+    this.getDishesList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.doc.id, ...c.payload.doc.data() }))
+      )
+    ).subscribe(dishes => {
+      this.dishes = (<Dish[]>dishes);
     });
-    return selectedDish;
   }
+
+  getNumberOfDishes() {
+    // const [userDetails, setUserDetails] = useState('')
+    // this.db.collection('users').doc(id).get()
+    //   .then(snapshot => setUserDetails(snapshot.data()))
+    return 9;
+  }
+
+  getDishesList() {
+    return this.dishesRef;
+  }
+
+  createDish(dish: Dish): void {
+    this.dishesRef.add({ ...dish });
+  }
+
+  updateDish(key: string, value: any) {
+    return this.dishesRef.doc(key).set(value)
+  }
+
+  deleteDish(key: string) {
+    this.dishesRef.doc(this.currentDish.key).delete();
+  }
+
 }
