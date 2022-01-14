@@ -1,5 +1,9 @@
 <header>
-    <app-cart-status routerLink="/cart"></app-cart-status>
+    <div class="logo">
+        <app-cart-status routerLink="/cart" *ngIf="auth.isLogged()"></app-cart-status>
+        <a routerLink="" class="nav-link">Home</a>
+        <a routerLink="/dishes/1" class="nav-link">Menu</a>
+    </div>
 
     <input class="menu-button" type="checkbox" id="menu-button" name="menu-buttton" />
     <label class="menu-icon" for="menu-button">
@@ -11,10 +15,20 @@
     <div class="spacer"></div>
 
     <nav class="links">
-        <a routerLink="/dishes/1" class="nav-link">Menu</a>
-        <a routerLink="/" class="nav-link">Home</a>
-        <a routerLink="/dishes/create" class="nav-link text-nowrap">Add new dish</a>
-        <mat-slide-toggle (change)="onChange()" [checked]="isChecked()" class="white-txt">{{currency}}
+        <a routerLink="/manager-view" class="nav-link text-nowrap" *ngIf="auth.manager">Manager</a>
+        <a routerLink="/admin-view" class="nav-link text-nowrap" *ngIf="auth.admin">Admin</a>
+        <ng-template #anonymousUser>
+            <a class="nav-link text-nowrap" routerLink="/login">Log In</a>
+            <a class="nav-link text-nowrap" routerLink="/sign-up">Sign Up</a>
+        </ng-template>
+
+        <ng-container *ngIf="auth.isLogged(); else anonymousUser">
+            <p class="email">{{auth.currentUser.email}}</p>
+            <a class="nav-link text-nowrap" routerLink="" (click)="logout()">Log
+                Out</a>
+        </ng-container>
+
+        <mat-slide-toggle (change)=" onChange()" [checked]="isChecked()" class="white-txt">{{currency}}
         </mat-slide-toggle>
     </nav>
 </header>

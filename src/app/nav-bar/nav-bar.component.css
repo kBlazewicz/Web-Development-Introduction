@@ -21,7 +21,7 @@ header {
 .links {
     display: flex;
     flex-basis: 30%;
-    justify-content: space-between;
+    justify-content:flex-end;
     align-items: center;
 }
 
@@ -43,8 +43,20 @@ header {
     left: -100%;
 }
 
+.email{
+    color: white;
+    text-align: center;
+    margin: 0 5px;
+    padding: 5px;
+}
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-@media screen and (max-width: 530px) {
+
+@media screen and (max-width: 700px) {
     header {
         display: grid;
         grid-template-areas: "title   spacer   hamburger" "nav     nav     nav";

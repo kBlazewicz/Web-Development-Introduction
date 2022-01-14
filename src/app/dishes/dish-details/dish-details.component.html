@@ -12,7 +12,7 @@
 
     <h3 *ngIf="dish.ordersLimit==0" class="out-off-supply ">Sold</h3>
     <p *ngIf="dish.ordersLimit>0" class="text-center">Positions left for today: {{ dish.ordersLimit }}</p>
-    <div>
+    <div *ngIf="auth.isLogged()">
         <button type="submit" class="btn btn-warning  waves order-btn" (click)="plus()" [ngClass]="{'btn-cstm': (dish.ordersLimit>=4),
                     'disabled': (dish.ordersLimit==0)}">+</button>
         <button type="submit" class="btn btn-danger waves order-btn" (click)="minus()"

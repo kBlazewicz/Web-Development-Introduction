@@ -1,0 +1,29 @@
+<button class="btn btn-warning btn-home" routerLink="">Home</button>
+
+<div class="container">
+    <section class="form-container">
+        <h4>Sign up</h4>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" id="login-form">
+            <div class="form-group">
+                <input type="email" class="form-control" formControlName="email" placeholder="Email">
+                <div *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched"
+                    class="alert alert-danger">
+                    Please insert your email
+                </div>
+                <div *ngIf="form.controls['email'].hasError('email') && form.controls['email'].touched"
+                    class="alert alert-danger">
+                    Pleease insert valid email
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                <div *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched"
+                    class="alert alert-danger">
+                    Please insert password
+                </div>
+            </div>
+            <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Sign up</button>
+        </form>
+    </section>
+
+</div>

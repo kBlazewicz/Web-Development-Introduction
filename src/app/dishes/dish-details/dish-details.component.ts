@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth.service';
 import { DishListService } from './../../dish-list.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ThrowStmt } from '@angular/compiler';
@@ -31,7 +32,8 @@ export class DishDetailsComponent implements OnInit {
   constructor(private data: ShoppingCartService,
     private route: ActivatedRoute,
     private router: Router,
-    private dishesService: DishListService) {
+    private dishesService: DishListService,
+    public auth: AuthService) {
   }
 
   ngOnInit(): void {

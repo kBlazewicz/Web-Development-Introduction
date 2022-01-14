@@ -1,3 +1,4 @@
+import { AuthService } from './../../../auth.service';
 import { DishListService } from './../../../dish-list.service';
 import { Opinion } from './opinion-form/opinion';
 import { PaginatorService } from './../../../paginator.service';
@@ -30,7 +31,8 @@ export class DishComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private paginator: PaginatorService,
-    private dishesService: DishListService) {
+    private dishesService: DishListService,
+    public auth: AuthService) {
     this.dish = this.dishesService.currentDish;
   }
 

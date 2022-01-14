@@ -1,9 +1,9 @@
-import { AddFormComponent } from './add-form/add-form.component';
+import { AuthService } from './../auth.service';
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { Dish } from '../dishes/dish';
-
+import 'firebase/compat/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -15,7 +15,7 @@ export class NavBarComponent implements OnInit {
   currency!: string;
   math = Math;
 
-  constructor(private data: ShoppingCartService,) {
+  constructor(private data: ShoppingCartService, private afAuth: AngularFireAuth, public auth: AuthService) {
     this.menu = this.data.getDishes();
   }
 
@@ -37,5 +37,9 @@ export class NavBarComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  logout() {
+    this.auth.logout();
   }
 }

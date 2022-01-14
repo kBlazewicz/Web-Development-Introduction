@@ -1,0 +1,16 @@
+<section class="persistence-form">
+    <h4 class="persistence">Choose persistence</h4>
+    <div class="inline form-check">
+        <input type="radio" class="btn-check" name="options-outlined" id="local-outlined" value='local'
+            [(ngModel)]="persistenceRadio" (change)="changePersistence()">
+        <label class="btn btn-outline-secondary" for="local-outlined">Local</label>
+
+        <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" value='session'
+            [(ngModel)]="persistenceRadio" (change)="changePersistence()">
+        <label class="btn btn-outline-secondary" for="success-outlined">Session</label>
+
+        <input type="radio" class="btn-check" name="options-outlined" id="none-outlined" value='none'
+            [(ngModel)]="persistenceRadio" (change)="changePersistence()">
+        <label class="btn btn-outline-secondary" for="none-outlined">None</label>
+    </div>
+</section>

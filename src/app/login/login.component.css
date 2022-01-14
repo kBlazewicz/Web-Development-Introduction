@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+.form-group{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.btn-home{
+    margin-top: 1rem;
+    margin-left: 2rem;
+  }
+  
+.logsub-buttons{
+    display: flexbox;
+}
+.su-btn{
+    margin-left: 1rem;
+}

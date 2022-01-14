@@ -1,3 +1,8 @@
+import { ManagerAuthGuardService } from './manager-auth-guard.service';
+import { AdminAuthGuardService } from './admin-auth-guard.service';
+import { UserService } from './user.service';
+import { AuthGuardService } from './auth-guard.service';
+import { AuthService } from './auth.service';
 
 import { environment } from '../environments/environment';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -30,6 +35,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { ContactComponent } from './home/contact/contact.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { PersistenceComponent } from './persistence/persistence.component';
+import { AdminViewComponent } from './admin-view/admin-view.component';
+import { ManagerViewComponent } from './manager-view/manager-view.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +57,11 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     DishComponent,
     OpinionFormComponent,
     ContactComponent,
+    LoginComponent,
+    SignUpComponent,
+    PersistenceComponent,
+    AdminViewComponent,
+    ManagerViewComponent,
 
 
   ],
@@ -66,7 +81,13 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuardService,
+    UserService,
+    AdminAuthGuardService,
+    ManagerAuthGuardService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
