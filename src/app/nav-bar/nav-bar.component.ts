@@ -1,3 +1,4 @@
+import { CartService } from './../cart.service';
 import { AuthService } from './../auth.service';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { ShoppingCartService } from '../shopping-cart.service';
@@ -15,7 +16,8 @@ export class NavBarComponent implements OnInit {
   currency!: string;
   math = Math;
 
-  constructor(private data: ShoppingCartService, private afAuth: AngularFireAuth, public auth: AuthService) {
+  constructor(private data: ShoppingCartService, private afAuth: AngularFireAuth,
+    public auth: AuthService) {
     this.menu = this.data.getDishes();
   }
 

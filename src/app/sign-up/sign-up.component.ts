@@ -1,3 +1,4 @@
+import { CartService } from './../cart.service';
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -17,7 +18,8 @@ export class SignUpComponent implements OnInit {
   password = "";
   form!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router,
+    private cartService: CartService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -29,7 +31,14 @@ export class SignUpComponent implements OnInit {
   onSubmit() {
     this.auth.
       signUp(this.form.get('email')?.value, this.form.get('password')?.value)
-      .then(() => this.router.navigate(['']))
+      .then(() => {
+        this.router.navigate(['']);
+        this.auth.login(this.form.get('email')?.value, this.form.get('password')?.value)
+          .then(() => {
+            this.cartService.createCart();
+          })
+      }
+      )
       .catch((e) => console.log(e.message));
   }
 }

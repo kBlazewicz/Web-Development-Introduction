@@ -1,1 +1,3 @@
-<button [ngClass]="{'cart-change': (cart>10)}" class="cart text-nowrap">Cart: {{ cart }}</button>
+<button [ngClass]="{'cart-change': (cartService.getTotalQuantity()>10)}" class="cart text-nowrap">
+    Cart: {{ cartService.getTotalQuantity() }}
+</button>

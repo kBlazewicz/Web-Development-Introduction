@@ -1,1 +1,28 @@
-<p>cart works!</p>
+<app-nav-bar></app-nav-bar>
+<section class="centered">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Dish</th>
+                <th scope="col">Quantity</th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+        <tbody *ngFor="let dish of order">
+            <tr>
+                <td>{{dish.dish}}</td>
+                <td>{{dish.quantity}}</td>
+                <td>
+                    <app-quantity-buttons [dishID]="dish.key"></app-quantity-buttons>
+                </td>
+            </tr>
+        </tbody>
+        <thead class="summary">
+            <th class="bold">Summary</th>
+            <th class="bold">Quantity: {{totalQuantity}}</th>
+            <th class="bold">Total: {{math.round(totalPrice*converter*100)/100}}{{currency}}</th>
+        </thead>
+    </table>
+
+</section>

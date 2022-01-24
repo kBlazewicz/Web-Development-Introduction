@@ -1,0 +1,60 @@
+<form #f="ngForm" (ngSubmit)="submit(f)" class="dish-form">
+    <h3>Modify {{dish.name}}</h3>
+
+    <div class="form-group form-content">
+        <input ngModel [ngModel]="dish.name" name="name" #name="ngModel" placeholder="Dish name" type="text"
+            value="john" required>
+        <div class="alert alert-danger" *ngIf="name.touched && !name.valid">Invalid form input</div>
+    </div>
+
+    <div class="form-group form-content">
+        <input ngModel [ngModel]="dish.cuisine" name="cuisine" #cuisine="ngModel" placeholder="Cusine" type="text"
+            required>
+        <div class="alert alert-danger" *ngIf="cuisine.touched && !cuisine.valid">Invalid form input</div>
+    </div>
+
+    <div class="form-group form-content">
+        <input ngModel [ngModel]="dish.type" name="type" #type="ngModel" placeholder="Type" type="text" required>
+        <div class="alert alert-danger" *ngIf="type.touched && !type.valid">Invalid form input</div>
+    </div>
+
+    <div class="form-group form-content">
+        <input ngModel [ngModel]="dish.category" name="category" #category="ngModel" placeholder="Category" type="text"
+            required>
+        <div class="alert alert-danger" *ngIf="category.touched && !category.valid">Invalid form input</div>
+    </div>
+
+    <div class="form-group form-content">
+        <input ngModel [ngModel]="dish.ingredients" name="ingredients" #ingredients="ngModel" placeholder="ingredients"
+            type="text" required>
+        <div class="alert alert-danger" *ngIf="ingredients.touched && !ingredients.valid">Invalid form input</div>
+    </div>
+
+    <div class="form-group form-content">
+        <input ngModel [ngModel]="dish.ordersLimit" name="ordersLimit" #ordersLimit="ngModel" placeholder="ordersLimit"
+            type="number" required>
+        <div class="alert alert-danger" *ngIf="ordersLimit.touched && !ordersLimit.valid">Invalid form input</div>
+    </div>
+
+    <div class="form-group form-content">
+        <input ngModel [ngModel]="dish.price" name="price" #price="ngModel" placeholder="Price" type="number" required>
+        <div class="alert alert-danger" *ngIf="price.touched && !price.valid">Invalid form input</div>
+    </div>
+
+    <div class="form-group form-content">
+        <input ngModel [ngModel]="dish.caption" name="caption" #caption="ngModel" placeholder="Caption" type="text"
+            required>
+        <div class="alert alert-danger" *ngIf="caption.touched && !caption.valid">Invalid form input</div>
+    </div>
+
+    <div class="form-group form-content">
+        <input ngModel [ngModel]="dish.photo" name="photo" #photo="ngModel" placeholder="Photo url" type="text"
+            required>
+        <div class="alert alert-danger" *ngIf="photo.touched && !photo.valid">Invalid form input</div>
+    </div>
+    <div class="buttons">
+        <button class="btn btn-danger" mat-dialog-close="true">Close</button>
+        <button class="btn btn-success" [mat-dialog-close]="true" [disabled]="!f.valid"
+            (click)="submit(f)">Submit</button>
+    </div>
+</form>

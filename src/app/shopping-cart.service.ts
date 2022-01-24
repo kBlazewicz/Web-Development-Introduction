@@ -1,4 +1,6 @@
-import { Dish } from 'src/app/dishes/dish';
+import { CartDish } from './cart/cart-dish';
+import { CartService } from './cart.service';
+import { Dish } from './dishes/dish';
 import { DishListService } from './dish-list.service';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, last } from 'rxjs';
@@ -21,23 +23,39 @@ export class ShoppingCartService {
   currentCart = this.cartSource.asObservable();
   currentConverter = this.converterSource.asObservable();
   currentDish = this.dishSource.asObservable();
+  order!: CartDish[];
 
 
-  constructor(private service: DishListService) {
+  constructor(private service: DishListService, private cartService: CartService) {
+  }
+
+  ngOnInit(): void {
+    this.getOrder();
+    console.log(this.order + " <<----order");
   }
 
   changeCurrency(currency: string, converter: number) {
-    console.log("service has changed currency");
     this.currencySource.next(currency);
     this.converterSource.next(converter);
   }
 
   cartUpdate(upd: number) {
+    this.cartService.getOrder();
     this.cartSource.next(upd);
   }
 
+  getOrder() {
+    this.cartService.getOrder().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.doc.id, ...c.payload.doc.data() }))
+      )
+    ).subscribe(order => {
+      this.order = <CartDish[]>order;
+    });
+  }
+
   getDish(key: string): Dish {
-    let temp = this.dishes[0];
+    let temp!: Dish;
     this.dishes.forEach(dish => {
       if (dish.key == key) {
         temp = dish;
@@ -53,9 +71,7 @@ export class ShoppingCartService {
       )
     ).subscribe(dishes => {
       this.dishes = (<Dish[]>dishes);
-      console.log(this.dishes + "prosze drugi log");
     });
-    console.log(this.dishes + "kolejny log");
   }
 
   getDishes(): Dish[] {

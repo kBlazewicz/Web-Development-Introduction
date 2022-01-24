@@ -59,20 +59,6 @@ export class PaginatorService {
   }
 
   getNumberOfDishes() {
-    let cnt = 0
-    this.dishesService.getDishesList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.doc.id, ...c.payload.doc.data() }))
-      )
-    ).subscribe(dishes => {
-      this.dishes = (<Dish[]>dishes);
-      this.dishes.forEach(() => {
-        cnt++;
-      });
-    });
-
-
-
-    return cnt;
+    return this.dishesService.getNumberOfDishes();
   }
 }

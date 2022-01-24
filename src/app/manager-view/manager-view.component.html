@@ -1,2 +1,17 @@
 <app-nav-bar></app-nav-bar>
-<p>manager-view works!</p>
+<section class="centered">
+    <section class="dishFrame" *ngFor="let dish of dishes">
+        <div class="details">
+            <p class="name">{{dish.name}}</p>
+            <p class="limit">left: {{dish.ordersLimit}}</p>
+            <div class="buttons">
+                <button mat-raised-button class="modifier" (click)="openDialog(dish)">Modify</button>
+                <app-remove-btn [dish]="dish"></app-remove-btn>
+            </div>
+        </div>
+    </section>
+
+    <div class="dishFrame">
+        <button class="btn btn-success create" routerLink="/dishes/create">Create new dish</button>
+    </div>
+</section>

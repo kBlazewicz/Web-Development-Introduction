@@ -1,15 +1,16 @@
-import { DishListService } from './../../dish-list.service';
-import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Dish } from 'src/app/dishes/dish';
+import { DishListService } from './../dish-list.service';
+import { Dish } from './../dishes/dish';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 
 @Component({
-  selector: 'app-add-form',
-  templateUrl: './add-form.component.html',
-  styleUrls: ['./add-form.component.css']
+  selector: 'app-modify-dish',
+  templateUrl: './modify-dish.component.html',
+  styleUrls: ['./modify-dish.component.css']
 })
-export class AddFormComponent implements OnInit {
+export class ModifyDishComponent implements OnInit {
   form = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(1)]),
     cuisine: new FormControl('', [Validators.required, Validators.minLength(1)]),
@@ -21,6 +22,7 @@ export class AddFormComponent implements OnInit {
     caption: new FormControl('', [Validators.required, Validators.minLength(1)]),
     photo: new FormControl('', [Validators.required, Validators.minLength(1)]),
   });
+  dish!: Dish;
 
   addDish() {
     this.form.setErrors({
@@ -30,18 +32,20 @@ export class AddFormComponent implements OnInit {
 
   cart!: number;
   menu!: Dish[];
-  constructor(private dishes: DishListService, private router: Router) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dishListService: DishListService) {
+    this.dish = data.dish;
+  }
+
+
 
   ngOnInit(): void {
   }
 
   submit(f: any) {
     let dish: Dish = f.value;
-    dish.rating = 0;
-    dish.maxLimit = dish.ordersLimit;
-    this.dishes.createDish(dish);
-    console.log(f.value);
-    this.router.navigate(["/manager-view"])
+    dish.rating = this.dish.rating;
+    dish.maxLimit = Math.max(dish.ordersLimit, this.dish.maxLimit);
+    this.dishListService.modifyDish(dish, this.dish.key);
   }
 
 }

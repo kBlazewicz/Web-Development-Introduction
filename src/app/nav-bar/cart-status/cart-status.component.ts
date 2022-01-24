@@ -1,3 +1,4 @@
+import { CartService } from './../../cart.service';
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from 'src/app/shopping-cart.service';
 
@@ -9,11 +10,13 @@ import { ShoppingCartService } from 'src/app/shopping-cart.service';
 export class CartStatusComponent implements OnInit {
   cart!: number;
 
-  constructor(private data: ShoppingCartService) {
+  constructor(private data: ShoppingCartService,
+    public cartService: CartService) {
   }
 
   ngOnInit(): void {
     this.data.currentCart.subscribe(cart => this.cart = cart)
+    this.cartService.updateCart();
   }
 
 }

@@ -18,7 +18,7 @@ export class DishesComponent implements OnInit {
   numberOfElements!: number;
   number = this.numberOfElements;
   pagesArray!: number[];
-  dishes!: Dish[];
+  dishes: Dish[] = [];
   filteredDishes!: Dish[];
   isMax!: number;
   isMin!: number;
@@ -44,7 +44,6 @@ export class DishesComponent implements OnInit {
         this.paginator.changePage(page);
       }
     });
-
   }
 
   getDishesList() {
@@ -57,7 +56,6 @@ export class DishesComponent implements OnInit {
       this.dishes = (<Dish[]>dishes);
       this.isMin = this.getMinPrice(this.dishes);
       this.isMax = this.getMaxPrice(this.dishes);
-      console.log(this.dishes, this.isMin, this.isMax);
     });
   }
 

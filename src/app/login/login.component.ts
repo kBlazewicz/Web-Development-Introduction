@@ -1,3 +1,4 @@
+import { CartService } from './../cart.service';
 import { AuthService } from './../auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   password = "";
   form!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private auth: AuthService) { }
+  constructor(private formBuilder: FormBuilder, private auth: AuthService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -27,6 +28,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.auth.login(this.form.get('email')?.value, this.form.get('password')?.value);
-
+    this.cartService.updateCart();
   }
 }

@@ -1,0 +1,4 @@
+<button type="submit" class="btn btn-warning  waves order-btn" [ngClass]="{'btn-cstm': (dish.ordersLimit>=4),
+    'disabled': (dish.ordersLimit==0)}" (click)="plus()">+</button>
+<button type="submit" class="btn btn-danger waves order-btn" [ngClass]="{'disabled': (dish.ordersLimit==dish.maxLimit)}"
+    (click)="minus()">-</button>

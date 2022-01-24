@@ -1,3 +1,4 @@
+import { CartService } from './cart.service';
 import { UserService } from './user.service';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -19,8 +20,14 @@ export class AuthService {
   currentUser!: any;
   persistence = 'local';
 
-  constructor(private afAuth: AngularFireAuth, private router: Router, private userService: UserService) {
+  constructor(private afAuth: AngularFireAuth, private router: Router,
+    private userService: UserService) {
+
     this.user$ = afAuth.authState;
+    this.refreshUser$();
+  }
+
+  refreshUser$() {
     this.user$.subscribe((User) => {
       if (User === null) {
         this.currentUser = null;
@@ -31,17 +38,17 @@ export class AuthService {
         this.currentUser = User;
         this.isAdmin();
         this.isManager();
-
       }
     });
   }
 
   login(email: string, password: string) {
-    this.afAuth.signInWithEmailAndPassword(email, password)
+    return this.afAuth.signInWithEmailAndPassword(email, password)
       .then(res => {
         console.log('You are logged in!');
         this.router.navigate(['']);
         this.logged = true;
+        this.refreshUser$();
       })
       .catch(err => {
         console.log('Something went wrong: ', err.message);
@@ -61,6 +68,7 @@ export class AuthService {
       .then(x => {
         this.userService.save(x.user!.email!, x.user!.uid)
         console.log('You are signed up!');
+        this.refreshUser$();
       })
       .catch(error => {
         console.log('Something is wrong: ', error.message);

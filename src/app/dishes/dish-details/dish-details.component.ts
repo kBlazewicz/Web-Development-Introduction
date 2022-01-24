@@ -29,31 +29,18 @@ export class DishDetailsComponent implements OnInit {
   rating = 1;
   hoverState = 0;
   dishes: Dish[] = []
+  dishID!: string;
   constructor(private data: ShoppingCartService,
-    private route: ActivatedRoute,
     private router: Router,
     private dishesService: DishListService,
     public auth: AuthService) {
   }
 
   ngOnInit(): void {
-    this.data.currentConverter.subscribe(converter => this.converter = converter)
-    this.data.currentCurrency.subscribe(currency => this.currency = currency)
-    this.data.currentCart.subscribe(cart => this.cart = cart)
-  }
-
-  plus() {
-    if (this.dish.ordersLimit > 0) {
-      this.dish.ordersLimit -= 1;
-      this.data.cartUpdate(this.cart + 1);
-    }
-  }
-
-  minus() {
-    if (this.dish.ordersLimit < this.dish.maxLimit) {
-      this.dish.ordersLimit += 1;
-      this.data.cartUpdate(this.cart - 1);
-    }
+    this.data.currentConverter.subscribe(converter => this.converter = converter);
+    this.data.currentCurrency.subscribe(currency => this.currency = currency);
+    this.data.currentCart.subscribe(cart => this.cart = cart);
+    this.dishID = this.dish.key;
   }
 
   onStarEnter(starID: number) {

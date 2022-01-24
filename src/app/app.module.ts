@@ -1,3 +1,4 @@
+import { CartService } from './cart.service';
 import { ManagerAuthGuardService } from './manager-auth-guard.service';
 import { AdminAuthGuardService } from './admin-auth-guard.service';
 import { UserService } from './user.service';
@@ -40,6 +41,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { PersistenceComponent } from './persistence/persistence.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { ManagerViewComponent } from './manager-view/manager-view.component';
+import { QuantityButtonsComponent } from './quantity-buttons/quantity-buttons.component';
+import { ModifyDishComponent } from './modify-dish/modify-dish.component';
 
 @NgModule({
   declarations: [
@@ -62,8 +65,8 @@ import { ManagerViewComponent } from './manager-view/manager-view.component';
     PersistenceComponent,
     AdminViewComponent,
     ManagerViewComponent,
-
-
+    QuantityButtonsComponent,
+    ModifyDishComponent,
   ],
   imports: [
     FormsModule,
@@ -87,6 +90,7 @@ import { ManagerViewComponent } from './manager-view/manager-view.component';
     UserService,
     AdminAuthGuardService,
     ManagerAuthGuardService,
+    CartService,
   ],
   bootstrap: [AppComponent]
 })
