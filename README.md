@@ -1,3 +1,4 @@
+Single Page Application made for web development course at AGHust
 # Restaurant
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.
