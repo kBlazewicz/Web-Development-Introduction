@@ -6,17 +6,10 @@
         <img src="{{dish.photo}}" alt="dish-photo">
     </div>
     <h2 class="title">{{dish.name | uppercase}}</h2>
+    <h3 *ngIf="dish.rating_amount>0">Rating: {{dish.rating}} (rates: {{dish.rating_amount}})</h3>
     <p>{{ dish.type | uppercase}}, {{ dish.category | uppercase}}, {{ dish.cuisine | uppercase}}</p>
     <p>Dish Price: {{ math.round(dish.price * converter*100)/100 }}{{currency}}</p>
     <p>{{dish.caption}}</p>
-    <div>
-        <h4 *ngIf="isRated"></h4>
-        <ng-container *ngFor="let star of stars;">
-            <app-star [starID]="star" [rating]="hoverState || rating" (starEnter)="onStarEnter($event)"
-                (starLeave)="onStarLeave()" (starClicked)="onStarClicked($event)">
-            </app-star>
-        </ng-container>
-    </div>
 
     <app-quantity-buttons [dishID]="dish.key"></app-quantity-buttons>
     <button class="opinion-btn btn-primary" (click)="addOpinion()">Reviews</button>

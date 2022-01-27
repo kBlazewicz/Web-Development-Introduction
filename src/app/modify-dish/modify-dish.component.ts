@@ -44,6 +44,7 @@ export class ModifyDishComponent implements OnInit {
   submit(f: any) {
     let dish: Dish = f.value;
     dish.rating = this.dish.rating;
+    dish.rating_amount = this.dish.rating_amount;
     dish.maxLimit = Math.max(dish.ordersLimit, this.dish.maxLimit);
     this.dishListService.modifyDish(dish, this.dish.key);
   }

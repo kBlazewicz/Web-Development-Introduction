@@ -11,4 +11,5 @@ export interface Dish {
     photo: string;
     maxLimit: number;
     rating: number;
+    rating_amount: number;
 }

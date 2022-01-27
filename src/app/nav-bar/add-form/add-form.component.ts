@@ -38,10 +38,10 @@ export class AddFormComponent implements OnInit {
   submit(f: any) {
     let dish: Dish = f.value;
     dish.rating = 0;
+    dish.rating_amount = 0;
     dish.maxLimit = dish.ordersLimit;
     this.dishes.createDish(dish);
-    console.log(f.value);
-    this.router.navigate(["/manager-view"])
+    this.router.navigate(["/manager-view"]);
   }
 
 }

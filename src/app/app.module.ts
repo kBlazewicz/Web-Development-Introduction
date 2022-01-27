@@ -4,21 +4,17 @@ import { AdminAuthGuardService } from './admin-auth-guard.service';
 import { UserService } from './user.service';
 import { AuthGuardService } from './auth-guard.service';
 import { AuthService } from './auth.service';
-
 import { environment } from '../environments/environment';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { DishesComponent } from './dishes/dishes.component';
-import { DishDetailsComponent } from './dishes/dish-details/dish-details.component';
 import { RemoveBtnComponent } from './dishes/dish-details/remove-btn/remove-btn.component';
 import { AddFormComponent } from './nav-bar/add-form/add-form.component';
 import { CartStatusComponent } from './nav-bar/cart-status/cart-status.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,17 +27,17 @@ import { CartComponent } from './cart/cart.component';
 import { DishComponent } from './dishes/dish-details/dish/dish.component';
 import { OpinionFormComponent } from './dishes/dish-details/dish/opinion-form/opinion-form.component';
 import { AppRoutingModule } from './app-routing.module';
-
 import { ContactComponent } from './home/contact/contact.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { PersistenceComponent } from './persistence/persistence.component';
+import { PersistenceComponent } from './admin-view/persistence/persistence.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { ManagerViewComponent } from './manager-view/manager-view.component';
 import { QuantityButtonsComponent } from './quantity-buttons/quantity-buttons.component';
 import { ModifyDishComponent } from './modify-dish/modify-dish.component';
+import { DishDetailsComponent } from './dishes/dish-details/dish-details.component';
 
 
 @NgModule({

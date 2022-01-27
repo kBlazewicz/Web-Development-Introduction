@@ -4,7 +4,7 @@ import { DishListService } from './../../dish-list.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ThrowStmt } from '@angular/compiler';
 import { Dish } from '../dish';
-import { ShoppingCartService } from 'src/app/shopping-cart.service';
+import { ShoppingManagerService } from 'src/app/shopping-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { stringify } from 'querystring';
 import { map } from 'rxjs';
@@ -26,14 +26,10 @@ export class DishDetailsComponent implements OnInit {
   currency!: string;
   math = Math;
   cart!: number;
-  stars = [1, 2, 3, 4, 5]
-  rating = 1;
-  hoverState = 0;
   dishes: Dish[] = []
   dishID!: string;
-  isRated = false;
 
-  constructor(private data: ShoppingCartService,
+  constructor(private data: ShoppingManagerService,
     private router: Router,
     private dishesService: DishListService,
     public auth: AuthService,
@@ -45,16 +41,6 @@ export class DishDetailsComponent implements OnInit {
     this.data.currentCurrency.subscribe(currency => this.currency = currency);
     this.data.currentCart.subscribe(cart => this.cart = cart);
     this.dishID = this.dish.key;
-  }
-
-  onStarEnter(starID: number) {
-    this.hoverState = starID;
-    this.rating = starID;
-    this.isRated = true;
-  }
-
-  onStarLeave() {
-    this.hoverState = 0;
   }
 
   getDishesList() {
@@ -71,6 +57,5 @@ export class DishDetailsComponent implements OnInit {
     this.dishesService.updatecurrentDish(this.dish);
     this.cartService.isInCart(this.dish.key);
     this.router.navigate(['/dishes/dish']);
-    console.log("details of dish");
   }
 }

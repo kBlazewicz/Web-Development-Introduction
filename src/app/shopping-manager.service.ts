@@ -11,13 +11,12 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 
-export class ShoppingCartService {
+export class ShoppingManagerService {
   dishes!: Dish[];
   private cartSource = new BehaviorSubject(0);
   private currencySource = new BehaviorSubject("€");
   private converterSource = new BehaviorSubject(1);
   private dishSource = new BehaviorSubject({});
-
 
 
   currentCurrency = this.currencySource.asObservable();
@@ -62,16 +61,6 @@ export class ShoppingCartService {
       }
     });
     return temp;
-  }
-
-  getDishesList() {
-    this.service.getDishesList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.doc.id, ...c.payload.doc.data() }))
-      )
-    ).subscribe(dishes => {
-      this.dishes = (<Dish[]>dishes);
-    });
   }
 
   getDishes(): Dish[] {

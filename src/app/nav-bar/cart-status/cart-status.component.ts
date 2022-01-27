@@ -1,6 +1,6 @@
 import { CartService } from './../../cart.service';
 import { Component, OnInit } from '@angular/core';
-import { ShoppingCartService } from 'src/app/shopping-cart.service';
+import { ShoppingManagerService } from 'src/app/shopping-manager.service';
 
 @Component({
   selector: 'app-cart-status',
@@ -10,7 +10,7 @@ import { ShoppingCartService } from 'src/app/shopping-cart.service';
 export class CartStatusComponent implements OnInit {
   cart!: number;
 
-  constructor(private data: ShoppingCartService,
+  constructor(private data: ShoppingManagerService,
     public cartService: CartService) {
   }
 

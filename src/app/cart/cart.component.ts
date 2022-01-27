@@ -1,7 +1,8 @@
-import { ShoppingCartService } from 'src/app/shopping-cart.service';
+import { CartService } from './../cart.service';
+import { ShoppingManagerService } from 'src/app/shopping-manager.service';
 import { CartDish } from './cart-dish';
 import { map } from 'rxjs';
-import { CartService } from './../cart.service';
+;
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -20,7 +21,7 @@ export class CartComponent implements OnInit {
 
 
 
-  constructor(public cartService: CartService, private data: ShoppingCartService, private router: Router) {
+  constructor(public cartService: CartService, private data: ShoppingManagerService, private router: Router) {
   }
 
   ngOnInit(): void {

@@ -23,6 +23,10 @@ export class OpinionFormComponent implements OnInit {
   });
   opinions: Opinion[] = [];
   isInCart = false;
+  stars = [1, 2, 3, 4, 5]
+  rating = 1;
+  isRated = false;
+  hoverState = 0;
 
 
   constructor(private dishesService: DishListService,
@@ -32,8 +36,6 @@ export class OpinionFormComponent implements OnInit {
     private cartService: CartService) {
     this.dish = this.dishesService.currentDish;
     this.opinions = this.dishesService.getCurrentOpinions();
-    console.log(this.opinions)
-    console.log
   }
 
   ngOnInit(): void {
@@ -41,7 +43,6 @@ export class OpinionFormComponent implements OnInit {
       collection('dish_opinion').snapshotChanges().pipe(
         map(changes => changes.map(c => ({ key: c.payload.doc.id, ...c.payload.doc.data() })))
       ).subscribe(items => {
-        console.log(<Opinion[]>items + "<___")
         this.opinions = <Opinion[]>items;
       });;;
     this.cartService.currentIsInCart.subscribe(isInCart => this.isInCart = isInCart);
@@ -56,10 +57,25 @@ export class OpinionFormComponent implements OnInit {
       date = null;
     }
     if (this.dish == undefined) {
-      console.log("if dish id is undefined it means that you have refreshed page hear")
     }
     this.opinonsService.addOpinion(this.dish.key, this.form.value.text, date, this.auth.currentUser.email)
     this.form.reset();
   }
+  onStarEnter(starID: number) {
+    this.hoverState = starID;
+  }
+  onStarLeave() {
+    this.hoverState = 0;
+  }
+  onStarClicked(starID: number) {
+    if (!this.isRated) {
+      this.rating = starID;
+      this.isRated = true;
+      this.dishesService.rateDish(this.rating)
+    }
+  }
 
+  seeDetails() {
+    this.router.navigate(['/dishes/dish']);
+  }
 }

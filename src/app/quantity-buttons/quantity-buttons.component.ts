@@ -1,7 +1,7 @@
 import { CartService } from './../cart.service';
 import { DishListService } from './../dish-list.service';
 import { Dish } from './../dishes/dish';
-import { ShoppingCartService } from 'src/app/shopping-cart.service';
+import { ShoppingManagerService } from 'src/app/shopping-manager.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
@@ -16,7 +16,7 @@ export class QuantityButtonsComponent implements OnInit {
   cart!: number;
   dishes!: Dish[];
 
-  constructor(private data: ShoppingCartService,
+  constructor(private data: ShoppingManagerService,
     private dishList: DishListService,
     private cartService: CartService) {
 

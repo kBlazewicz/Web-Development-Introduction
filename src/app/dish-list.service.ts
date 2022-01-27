@@ -121,7 +121,13 @@ export class DishListService {
       caption: m.caption,
       photo: m.photo,
       maxLimit: m.maxLimit,
-      rating: m.rating
+      rating: m.rating,
+      rating_amount: m.rating_amount
     });
+  }
+  rateDish(rate: number) {
+    this.currentDish.rating = (this.currentDish.rating * this.currentDish.rating_amount + rate) / (this.currentDish.rating_amount + 1);
+    this.currentDish.rating_amount += 1;
+    this.modifyDish(this.currentDish, this.currentDish.key)
   }
 }

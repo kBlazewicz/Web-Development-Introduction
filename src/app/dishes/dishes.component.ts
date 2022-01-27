@@ -1,7 +1,7 @@
 import { DishListService } from './../dish-list.service';
 import { PaginatorService } from './../paginator.service';
 import { Component, OnInit } from '@angular/core';
-import { ShoppingCartService } from '../shopping-cart.service';
+import { ShoppingManagerService } from '../shopping-manager.service';
 import { Dish } from './dish';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
@@ -23,7 +23,7 @@ export class DishesComponent implements OnInit {
   isMax!: number;
   isMin!: number;
 
-  constructor(private data: ShoppingCartService,
+  constructor(private data: ShoppingManagerService,
     private paginator: PaginatorService,
     private route: ActivatedRoute,
     private router: Router,

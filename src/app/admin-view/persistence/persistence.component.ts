@@ -1,4 +1,4 @@
-import { AuthService } from './../auth.service';
+import { AuthService } from '../../auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,7 +13,6 @@ export class PersistenceComponent implements OnInit {
   ngOnInit(): void {
   }
   changePersistence() {
-    console.log(this.persistenceRadio);
     this.auth.setPersistence(this.persistenceRadio);
   }
 

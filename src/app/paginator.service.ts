@@ -1,4 +1,4 @@
-import { ShoppingCartService } from 'src/app/shopping-cart.service';
+import { ShoppingManagerService } from 'src/app/shopping-manager.service';
 import { Dish } from 'src/app/dishes/dish';
 import { DishListService } from './dish-list.service';
 import { BehaviorSubject, map } from 'rxjs';
@@ -25,7 +25,7 @@ export class PaginatorService {
   currentPagesArray = this.pagesArraySource.asObservable();
 
 
-  constructor(private service: ShoppingCartService, private dishesService: DishListService) {
+  constructor(private service: ShoppingManagerService, private dishesService: DishListService) {
     this.calculatePages();
   }
 
@@ -38,7 +38,6 @@ export class PaginatorService {
   calculatePages() {
     let pages = Math.ceil(this.getNumberOfDishes() /
       this.numberOfElements);
-    console.log("PAGES: " + pages);
     this.numberOfPagesSource.next(pages);
     this.numberOfPages = pages;
     this.updatePagesArray();
@@ -51,7 +50,6 @@ export class PaginatorService {
       array.push(i);
     }
     this.pagesArraySource.next(array);
-    console.log(array, this.numberOfPages);
   }
 
   changePage(page: number) {

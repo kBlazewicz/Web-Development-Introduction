@@ -1,5 +1,5 @@
 <svg [ngClass]="{'full':rating>=starID,
-                'empty': !(rating >= starID)}" (mouseenter)="onStarEnter()" mouseleave="onStarLeave()"
+                'empty': !(rating >= starID)}" (mouseenter)="onStarEnter()" (mouseleave)="onStarLeave()"
     (click)="starred()" viewBox="0 0 23 24" width="25" height="25">
     <polygon stroke-width="0" points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" />
 </svg>

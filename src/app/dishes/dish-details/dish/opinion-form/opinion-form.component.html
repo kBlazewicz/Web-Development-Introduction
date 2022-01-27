@@ -1,4 +1,5 @@
 <app-nav-bar></app-nav-bar>
+<button class="btn btn-primary back" (click)="seeDetails()">BACK</button>
 <section class="form-container opinion-form" *ngIf="!auth.manager && isInCart">
     <h3 class="title">Add Review</h3>
     <form [formGroup]="form" (ngSubmit)="submit()" id="reviewform">
@@ -21,7 +22,7 @@
         </div>
 
         <div class="form-group opinion-form">
-            <label for="">
+            <label>
                 Date
                 <input type="date" class="form-control form-content" formControlName="date" placeholder="Date">
             </label>
@@ -30,13 +31,21 @@
             <button type="submit" [disabled]="!form.valid" class="btn btn-success">Submit</button>
         </div>
     </form>
+    <h4 *ngIf="isRated">You have rated this dish</h4>
+    <div>
+        <ng-container *ngFor="let star of stars;">
+            <app-star [starID]="star" [rating]="hoverState || rating" (starEnter)="onStarEnter($event)"
+                (starLeave)="onStarLeave()" (starClicked)="onStarClicked($event)">
+            </app-star>
+        </ng-container>
+    </div>
 </section>
 <div *ngIf="auth.manager" class="title">
     <h3>Manager can't leave reviews</h3>
 </div>
 
 <div *ngIf="!auth.manager && !isInCart" class="title">
-    <h3>You have to add this item to your cart first</h3>
+    <h3>To place a review have to add this item to your cart first</h3>
 </div>
 <section class="opinions" *ngFor="let opinion of opinions">
     <div class="single">
@@ -44,4 +53,5 @@
         <p class="oopinion">{{opinion.opinion}}</p>
         <p class="odate">{{opinion.date}}</p>
     </div>
+
 </section>

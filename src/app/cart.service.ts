@@ -48,14 +48,11 @@ export class CartService {
 
   isInCartInner(key: string, order: CartDish[]) {
     let x = false;
-    console.log(this.order.length)
     order.forEach(element => {
-      console.log(element.key + "      " + key)
       if (element.key == key) {
         x = true;
       }
     });
-    console.log("isInCartUPDATE", x)
     this.isInCartSource.next(x);
   }
 
@@ -70,7 +67,6 @@ export class CartService {
 
   createCart() {
     this.cartsRef.doc(this.auth.currentUser.uid).set({});
-    console.log("new cart ")
   }
 
   updateCart() {
@@ -93,7 +89,6 @@ export class CartService {
         dishesRef.doc(dishID).update({ dish: name, quantity: firestore.firestore.FieldValue.increment(1) });
       }
       else {
-        console.log("crated dish")
         dishesRef.doc(dishID).set({ dish: name, quantity: 1 });
       }
     });

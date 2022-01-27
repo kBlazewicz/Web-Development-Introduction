@@ -29,7 +29,6 @@ export class OpinionsService {
     opinionsRef.doc(dishKey).get().pipe(map(snapshot => {
       return snapshot.exists;
     })).subscribe(exist => {
-      console.log("crated opinion")
       opinionsRef.doc().set({
         email: email,
         opinion: text,

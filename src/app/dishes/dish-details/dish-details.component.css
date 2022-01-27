@@ -9,8 +9,7 @@
     border: solid black 1px;
     /* margin: 0rem 1rem; */
     padding: 0.4rem;
-    background-color: rgb(212, 162, 100);
-    background-image: linear-gradient(to right, rgb(187, 169, 70) , rgb(240, 123, 77));
+    background-image: linear-gradient(to right, rgba(187, 169, 70, 0.918) , rgba(236, 157, 55, 0.911));
     border-radius: 10px;
     box-shadow: 10px 5px 5px grey;
 
@@ -25,6 +24,7 @@ p{
     text-align: left;
     padding: 0.4rem;
     font-family: 'Courier', Courier, monospace;
+    color: white;
 }
 .fake-photo{
     max-height: 290px;

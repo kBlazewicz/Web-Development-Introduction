@@ -1,6 +1,6 @@
 import { DishListService } from './../../../dish-list.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ShoppingCartService } from 'src/app/shopping-cart.service';
+import { ShoppingManagerService } from 'src/app/shopping-manager.service';
 import { Dish } from '../../dish';
 import { Route, Router } from '@angular/router';
 import { map } from 'rxjs';
@@ -15,12 +15,11 @@ export class RemoveBtnComponent implements OnInit {
 
   cart!: number;
 
-  constructor(private data: ShoppingCartService, private dishesService: DishListService,
-    private router: Router) {
+  constructor(private data: ShoppingManagerService, private dishesService: DishListService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    console.log(this.dish);
     this.data.currentCart.subscribe(cart => this.cart = cart);
   }
 
