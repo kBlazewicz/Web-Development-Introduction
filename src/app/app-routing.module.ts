@@ -1,11 +1,11 @@
 import { CartComponent } from './cart/cart.component';
 import { ManagerViewComponent } from './manager-view/manager-view.component';
-import { ManagerAuthGuardService } from './manager-auth-guard.service';
+import { ManagerAuthGuardService } from './authorization/manager-auth-guard.service';
 import { AdminViewComponent } from './admin-view/admin-view.component';
-import { AdminAuthGuardService } from './admin-auth-guard.service';
-import { AuthGuardService } from './auth-guard.service';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { LoginComponent } from './login/login.component';
+import { AdminAuthGuardService } from './authorization/admin-auth-guard.service';
+import { AuthGuardService } from './authorization/auth-guard.service';
+import { SignUpComponent } from './nav-bar/sign-up/sign-up.component';
+import { LoginComponent } from './nav-bar/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DishComponent } from './dishes/dish-details/dish/dish.component';
 import { DishesComponent } from './dishes/dishes.component';

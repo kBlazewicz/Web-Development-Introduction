@@ -1,4 +1,4 @@
-import { DishListService } from './../../dish-list.service';
+import { DishListService } from '../../services/dish-list.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';

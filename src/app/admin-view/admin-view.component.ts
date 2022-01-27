@@ -1,7 +1,7 @@
 import { map } from 'rxjs';
-import { UserService } from './../user.service';
+import { UserService } from '../authorization/user.service';
 import { Component, OnInit } from '@angular/core';
-import { AppUser } from '../user';
+import { AppUser } from '../authorization/user';
 
 @Component({
   selector: 'app-admin-view',

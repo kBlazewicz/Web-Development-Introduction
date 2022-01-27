@@ -1,13 +1,11 @@
-import { CartService } from './cart.service';
 import { OpinionsService } from './opinions.service';
-import { Opinion } from './dishes/dish-details/dish/opinion-form/opinion';
-
+import { Opinion } from '../dishes/dish-details/dish/opinion-form/opinion';
 import 'firebase/compat/auth';
 import firestore from 'firebase/compat/app'
-import { Dish } from './dishes/dish';
+import { Dish } from '../dishes/dish';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from '@angular/core';
-import { map, switchMap, Observable, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs';
 
 
 @Injectable({
@@ -18,11 +16,9 @@ export class DishListService {
   path = 'dishes_final'
   currentDish!: Dish;
   currentDishOpinions: Opinion[] = [];
-
-
   private dishesRef: AngularFirestoreCollection<any>;
 
-  constructor(private db: AngularFirestore, private opionionsService: OpinionsService) {
+  constructor(private db: AngularFirestore) {
     this.dishesRef = db.collection(this.path);
     this.getDishesArray();
   }
@@ -45,14 +41,14 @@ export class DishListService {
     return this.dishes;
   }
 
-
   getDishesList() {
     return this.dishesRef;
   }
+
   getDishes() {
     return this.db.collection(this.path)
-
   }
+
   createDish(dish: Dish): void {
     this.dishesRef.add({ ...dish });
   }
@@ -92,7 +88,7 @@ export class DishListService {
   }
 
   getPrice(key: string) {
-    var price = 0;
+    let price = 0;
     this.dishes.forEach(element => {
       if (key == element.key) {
         price = element.price;
@@ -102,8 +98,8 @@ export class DishListService {
   }
 
   getNumberOfDishes() {
-    var cnt = 0;
-    this.dishes.forEach(element => {
+    let cnt = 0;
+    this.dishes.forEach(() => {
       cnt += 1;
     });
     return cnt;
@@ -125,6 +121,7 @@ export class DishListService {
       rating_amount: m.rating_amount
     });
   }
+
   rateDish(rate: number) {
     this.currentDish.rating = (this.currentDish.rating * this.currentDish.rating_amount + rate) / (this.currentDish.rating_amount + 1);
     this.currentDish.rating_amount += 1;

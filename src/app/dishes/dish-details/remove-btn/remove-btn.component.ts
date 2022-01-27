@@ -1,9 +1,8 @@
-import { DishListService } from './../../../dish-list.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ShoppingManagerService } from 'src/app/shopping-manager.service';
+import { DishListService } from '../../../services/dish-list.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { ShoppingManagerService } from 'src/app/services/shopping-manager.service';
 import { Dish } from '../../dish';
-import { Route, Router } from '@angular/router';
-import { map } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-remove-btn',

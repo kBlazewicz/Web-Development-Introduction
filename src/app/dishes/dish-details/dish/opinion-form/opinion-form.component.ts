@@ -1,13 +1,13 @@
-import { map } from 'rxjs';
-import { CartService } from './../../../../cart.service';
-import { AuthService } from './../../../../auth.service';
-import { OpinionsService } from './../../../../opinions.service';
-import { DishListService } from './../../../../dish-list.service';
-import { Dish } from 'src/app/dishes/dish';
-import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Opinion } from './opinion';
+import {map} from 'rxjs';
+import {CartService} from '../../../../services/cart.service';
+import {AuthService} from '../../../../authorization/auth.service';
+import {OpinionsService} from '../../../../services/opinions.service';
+import {DishListService} from '../../../../services/dish-list.service';
+import {Dish} from 'src/app/dishes/dish';
+import {Validators, FormControl, FormGroup} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Opinion} from './opinion';
 
 @Component({
   selector: 'app-opinion-form',
@@ -30,43 +30,42 @@ export class OpinionFormComponent implements OnInit {
 
 
   constructor(private dishesService: DishListService,
-    private router: Router,
-    private opinonsService: OpinionsService,
-    public auth: AuthService,
-    private cartService: CartService) {
+              private router: Router,
+              private opinonsService: OpinionsService,
+              public auth: AuthService,
+              private cartService: CartService) {
     this.dish = this.dishesService.currentDish;
     this.opinions = this.dishesService.getCurrentOpinions();
   }
 
   ngOnInit(): void {
-    this.opinonsService.getOpinionsRef(this.dish.key).
-      collection('dish_opinion').snapshotChanges().pipe(
-        map(changes => changes.map(c => ({ key: c.payload.doc.id, ...c.payload.doc.data() })))
-      ).subscribe(items => {
-        this.opinions = <Opinion[]>items;
-      });;;
+    this.opinonsService.getOpinionsRef(this.dish.key).collection('dish_opinion').snapshotChanges().pipe(
+      map(changes => changes.map(c => ({key: c.payload.doc.id, ...c.payload.doc.data()})))
+    ).subscribe(items => {
+      this.opinions = <Opinion[]>items;
+    });
     this.cartService.currentIsInCart.subscribe(isInCart => this.isInCart = isInCart);
   }
 
   submit() {
-    var date: Date | null;
+    let date: Date | null;
     if (this.form.value.date != null) {
       date = this.form.value.date;
-    }
-    else {
+    } else {
       date = null;
-    }
-    if (this.dish == undefined) {
     }
     this.opinonsService.addOpinion(this.dish.key, this.form.value.text, date, this.auth.currentUser.email)
     this.form.reset();
   }
+
   onStarEnter(starID: number) {
     this.hoverState = starID;
   }
+
   onStarLeave() {
     this.hoverState = 0;
   }
+
   onStarClicked(starID: number) {
     if (!this.isRated) {
       this.rating = starID;

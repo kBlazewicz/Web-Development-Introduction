@@ -14,9 +14,9 @@
     margin-top: 1rem;
     margin-left: 2rem;
   }
-  
+
 .logsub-buttons{
-    display: flexbox;
+    display: flex;
 }
 .su-btn{
     margin-left: 1rem;

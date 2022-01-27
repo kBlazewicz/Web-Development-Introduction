@@ -1,5 +1,5 @@
-import { DishListService } from './../dish-list.service';
-import { Dish } from './../dishes/dish';
+import { DishListService } from '../../services/dish-list.service';
+import { Dish } from '../../dishes/dish';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -24,19 +24,17 @@ export class ModifyDishComponent implements OnInit {
   });
   dish!: Dish;
 
-  addDish() {
-    this.form.setErrors({
-      invalidDish: true
-    });
-  }
-
   cart!: number;
   menu!: Dish[];
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dishListService: DishListService) {
     this.dish = data.dish;
   }
 
-
+  addDish() {
+    this.form.setErrors({
+      invalidDish: true
+    });
+  }
 
   ngOnInit(): void {
   }

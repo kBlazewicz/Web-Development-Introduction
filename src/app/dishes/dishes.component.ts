@@ -1,7 +1,7 @@
-import { DishListService } from './../dish-list.service';
-import { PaginatorService } from './../paginator.service';
+import { DishListService } from '../services/dish-list.service';
+import { PaginatorService } from '../services/paginator.service';
 import { Component, OnInit } from '@angular/core';
-import { ShoppingManagerService } from '../shopping-manager.service';
+import { ShoppingManagerService } from '../services/shopping-manager.service';
 import { Dish } from './dish';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';

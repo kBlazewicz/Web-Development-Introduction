@@ -1,7 +1,7 @@
-import { ModifyDishComponent } from './../modify-dish/modify-dish.component';
-import { Dish } from './../dishes/dish';
+import { ModifyDishComponent } from './modify-dish/modify-dish.component';
+import { Dish } from '../dishes/dish';
 import { map } from 'rxjs';
-import { DishListService } from './../dish-list.service';
+import { DishListService } from '../services/dish-list.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 
@@ -37,7 +37,6 @@ export class ManagerViewComponent implements OnInit {
     dialogConfig.data = {
       dish: dish
     };
-
     this.dialog.open(ModifyDishComponent, dialogConfig);
   }
 }

@@ -1,9 +1,8 @@
-import { CartService } from './../cart.service';
-import { DishListService } from './../dish-list.service';
-import { Dish } from './../dishes/dish';
-import { ShoppingManagerService } from 'src/app/shopping-manager.service';
+import { CartService } from '../services/cart.service';
+import { DishListService } from '../services/dish-list.service';
+import { Dish } from '../dishes/dish';
+import { ShoppingManagerService } from 'src/app/services/shopping-manager.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-quantity-buttons',
@@ -19,7 +18,6 @@ export class QuantityButtonsComponent implements OnInit {
   constructor(private data: ShoppingManagerService,
     private dishList: DishListService,
     private cartService: CartService) {
-
   }
 
   ngOnInit(): void {

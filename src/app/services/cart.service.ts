@@ -1,12 +1,12 @@
-import { DishListService } from './dish-list.service';
-import { CartDish } from './cart/cart-dish';
+import {DishListService} from './dish-list.service';
+import {CartDish} from '../cart/cart-dish';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import firestore from 'firebase/compat/app'
-import { AuthService } from './auth.service';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { Injectable } from '@angular/core';
-import { Observable, map, BehaviorSubject } from 'rxjs';
+import {AuthService} from '../authorization/auth.service';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
+import {Injectable} from '@angular/core';
+import {Observable, map, BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +41,6 @@ export class CartService {
       this.totalQuantity += position.quantity;
       this.totalPrice += this.dishList.getPrice(position.key) * position.quantity;
     });
-
     this.totalPriceSource.next(this.totalPrice);
     this.totalQuantitySource.next(this.totalQuantity);
   }
@@ -58,7 +57,7 @@ export class CartService {
 
   isInCart(key: string) {
     this.subscription = this.getOrder().snapshotChanges().pipe(
-      map(changes => changes.map(c => ({ key: c.payload.doc.id, ...c.payload.doc.data() })))
+      map(changes => changes.map(c => ({key: c.payload.doc.id, ...c.payload.doc.data()})))
     ).subscribe(items => {
       this.order = <CartDish[]>items;
       this.isInCartInner(key, this.order);
@@ -71,14 +70,12 @@ export class CartService {
 
   updateCart() {
     this.subscription = this.getOrder().snapshotChanges().pipe(
-      map(changes => changes.map(c => ({ key: c.payload.doc.id, ...c.payload.doc.data() })))
+      map(changes => changes.map(c => ({key: c.payload.doc.id, ...c.payload.doc.data()})))
     ).subscribe(items => {
       this.order = <CartDish[]>items;
       this.calculateNumber(this.order);
     });
   }
-
-
 
   addToCart(dishID: string, name: string) {
     const dishesRef = this.db.collection("carts").doc(this.auth.currentUser.uid).collection("dishes");
@@ -86,15 +83,13 @@ export class CartService {
       return snapshot.exists;
     })).subscribe(exist => {
       if (exist) {
-        dishesRef.doc(dishID).update({ dish: name, quantity: firestore.firestore.FieldValue.increment(1) });
-      }
-      else {
-        dishesRef.doc(dishID).set({ dish: name, quantity: 1 });
+        dishesRef.doc(dishID).update({dish: name, quantity: firestore.firestore.FieldValue.increment(1)});
+      } else {
+        dishesRef.doc(dishID).set({dish: name, quantity: 1});
       }
     });
     this.updateCart();
   }
-
 
   removeFromCart(dishID: string) {
     const dishesRef = this.db.collection("carts").doc(this.auth.currentUser.uid).collection("dishes");
@@ -104,12 +99,10 @@ export class CartService {
       if (x) {
         if (x["quantity"] == 1) {
           dishesRef.doc(dishID).delete();
+        } else {
+          dishesRef.doc(dishID).update({quantity: firestore.firestore.FieldValue.increment(-1)});
         }
-        else {
-          dishesRef.doc(dishID).update({ quantity: firestore.firestore.FieldValue.increment(-1) });
-        }
-      }
-      else {
+      } else {
         console.log("there is no dish with this id")
       }
     });

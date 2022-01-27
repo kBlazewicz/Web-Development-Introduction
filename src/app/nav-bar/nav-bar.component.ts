@@ -1,9 +1,11 @@
-import { AuthService } from './../auth.service';
-import { Component, OnInit, OnChanges } from '@angular/core';
-import { ShoppingManagerService } from '../shopping-manager.service';
+import { AuthService } from '../authorization/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { ShoppingManagerService } from '../services/shopping-manager.service';
 import { Dish } from '../dishes/dish';
 import 'firebase/compat/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -15,8 +17,7 @@ export class NavBarComponent implements OnInit {
   currency!: string;
   math = Math;
 
-  constructor(private data: ShoppingManagerService, private afAuth: AngularFireAuth,
-    public auth: AuthService) {
+  constructor(private data: ShoppingManagerService, public auth: AuthService) {
     this.menu = this.data.getDishes();
   }
 
@@ -34,10 +35,7 @@ export class NavBarComponent implements OnInit {
   }
 
   isChecked() {
-    if (this.currency == "$") {
-      return true;
-    }
-    return false;
+    return this.currency == "$";
   }
 
   logout() {

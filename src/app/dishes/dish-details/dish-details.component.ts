@@ -1,13 +1,10 @@
-import { CartService } from './../../cart.service';
-import { AuthService } from './../../auth.service';
-import { DishListService } from './../../dish-list.service';
+import { CartService } from '../../services/cart.service';
+import { AuthService } from '../../authorization/auth.service';
+import { DishListService } from '../../services/dish-list.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { ThrowStmt } from '@angular/compiler';
 import { Dish } from '../dish';
-import { ShoppingManagerService } from 'src/app/shopping-manager.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { stringify } from 'querystring';
-import { map } from 'rxjs';
+import { ShoppingManagerService } from 'src/app/services/shopping-manager.service';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-dish-details',
@@ -41,16 +38,6 @@ export class DishDetailsComponent implements OnInit {
     this.data.currentCurrency.subscribe(currency => this.currency = currency);
     this.data.currentCart.subscribe(cart => this.cart = cart);
     this.dishID = this.dish.key;
-  }
-
-  getDishesList() {
-    this.dishesService.getDishesList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.doc.id, ...c.payload.doc.data() }))
-      )
-    ).subscribe(dishes => {
-      this.dishes = (<Dish[]>dishes);
-    });
   }
 
   seeDetails() {

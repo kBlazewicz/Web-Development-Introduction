@@ -13,7 +13,6 @@ export class UserService {
     this.userRef = db.collection('users');
   }
 
-
   save(email: string, uid: string) {
     this.userRef.doc(uid).set({
       key: uid,

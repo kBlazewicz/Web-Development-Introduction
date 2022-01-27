@@ -1,8 +1,8 @@
-import { AuthService } from './../../../auth.service';
-import { DishListService } from './../../../dish-list.service';
+import { AuthService } from '../../../authorization/auth.service';
+import { DishListService } from '../../../services/dish-list.service';
 import { Opinion } from './opinion-form/opinion';
-import { PaginatorService } from './../../../paginator.service';
-import { ShoppingManagerService } from 'src/app/shopping-manager.service';
+import { PaginatorService } from '../../../services/paginator.service';
+import { ShoppingManagerService } from 'src/app/services/shopping-manager.service';
 import { Dish } from 'src/app/dishes/dish';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -75,7 +75,6 @@ export class DishComponent implements OnInit {
       this.isRated = true;
       this.dishesService.rateDish(this.rating)
     }
-
   }
 
   addOpinion() {

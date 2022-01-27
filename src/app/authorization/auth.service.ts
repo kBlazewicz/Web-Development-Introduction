@@ -1,4 +1,3 @@
-import { CartService } from './cart.service';
 import { UserService } from './user.service';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -45,7 +44,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
-      .then(res => {
+      .then(() => {
         console.log('You are logged in!');
         this.router.navigate(['']);
         this.logged = true;

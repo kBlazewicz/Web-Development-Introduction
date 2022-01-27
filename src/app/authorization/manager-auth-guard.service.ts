@@ -9,7 +9,7 @@ import { Observable, map } from 'rxjs';
 })
 export class ManagerAuthGuardService {
 
-  constructor(private auth: AuthService, private router: Router, private userService: UserService) { }
+  constructor(private auth: AuthService) { }
 
   canActivate(route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

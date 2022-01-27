@@ -1,9 +1,9 @@
-import { CartService } from './cart.service';
-import { ManagerAuthGuardService } from './manager-auth-guard.service';
-import { AdminAuthGuardService } from './admin-auth-guard.service';
-import { UserService } from './user.service';
-import { AuthGuardService } from './auth-guard.service';
-import { AuthService } from './auth.service';
+import { CartService } from './services/cart.service';
+import { ManagerAuthGuardService } from './authorization/manager-auth-guard.service';
+import { AdminAuthGuardService } from './authorization/admin-auth-guard.service';
+import { UserService } from './authorization/user.service';
+import { AuthGuardService } from './authorization/auth-guard.service';
+import { AuthService } from './authorization/auth.service';
 import { environment } from '../environments/environment';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
@@ -30,13 +30,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { ContactComponent } from './home/contact/contact.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { LoginComponent } from './login/login.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { LoginComponent } from './nav-bar/login/login.component';
+import { SignUpComponent } from './nav-bar/sign-up/sign-up.component';
 import { PersistenceComponent } from './admin-view/persistence/persistence.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { ManagerViewComponent } from './manager-view/manager-view.component';
 import { QuantityButtonsComponent } from './quantity-buttons/quantity-buttons.component';
-import { ModifyDishComponent } from './modify-dish/modify-dish.component';
+import { ModifyDishComponent } from './manager-view/modify-dish/modify-dish.component';
 import { DishDetailsComponent } from './dishes/dish-details/dish-details.component';
 
 

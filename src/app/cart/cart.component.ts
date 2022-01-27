@@ -1,8 +1,8 @@
-import { CartService } from './../cart.service';
-import { ShoppingManagerService } from 'src/app/shopping-manager.service';
+import { CartService } from '../services/cart.service';
+import { ShoppingManagerService } from 'src/app/services/shopping-manager.service';
 import { CartDish } from './cart-dish';
 import { map } from 'rxjs';
-;
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -19,9 +19,7 @@ export class CartComponent implements OnInit {
   currency!: string;
   math = Math;
 
-
-
-  constructor(public cartService: CartService, private data: ShoppingManagerService, private router: Router) {
+  constructor(public cartService: CartService, private data: ShoppingManagerService) {
   }
 
   ngOnInit(): void {
@@ -31,7 +29,6 @@ export class CartComponent implements OnInit {
     this.data.currentCurrency.subscribe(currency => this.currency = currency);
     this.getOrder();
   }
-
 
   createCart() {
     this.cartService.createCart();

@@ -1,6 +1,6 @@
-import { CartService } from './../../cart.service';
+import { CartService } from '../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
-import { ShoppingManagerService } from 'src/app/shopping-manager.service';
+import { ShoppingManagerService } from 'src/app/services/shopping-manager.service';
 
 @Component({
   selector: 'app-cart-status',

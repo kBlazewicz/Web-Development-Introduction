@@ -1,8 +1,8 @@
-import { ShoppingManagerService } from 'src/app/shopping-manager.service';
-import { Dish } from 'src/app/dishes/dish';
-import { DishListService } from './dish-list.service';
-import { BehaviorSubject, map } from 'rxjs';
-import { Injectable } from '@angular/core';
+import {ShoppingManagerService} from 'src/app/services/shopping-manager.service';
+import {Dish} from 'src/app/dishes/dish';
+import {DishListService} from './dish-list.service';
+import {BehaviorSubject} from 'rxjs';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +42,6 @@ export class PaginatorService {
     this.numberOfPages = pages;
     this.updatePagesArray();
   }
-
 
   updatePagesArray() {
     let array = [];
