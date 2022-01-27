@@ -1,33 +1,20 @@
 <app-nav-bar></app-nav-bar>
 <app-persistence></app-persistence>
-<section class="centered">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">User</th>
-                <th scope="col">Ban</th>
-                <th scope="col">Manager</th>
-                <th scope="col">Admin</th>
+<section class="wrapper">
+    <div class="wrapper-grid row" *ngFor="let user of users" [ngClass]="{'admin': user.admin,'manager' : user.manager}">
+        <td>{{user.email}}</td>
+        <td>
+            <button class="modfier" *ngIf="user.ban" (click)="unban(user)">Unban</button>
+            <button class="modfier" *ngIf="!user.ban" (click)="ban(user)">Ban</button>
+        </td>
+        <td>
+            <button class="modfier" *ngIf="!user.manager" (click)="makeManager(user)">Manager</button>
+            <button class="modfier" *ngIf="user.manager" (click)="unmakeManager(user)">UnManager</button>
+        </td>
+        <td>
+            <button class="modfier " *ngIf="!user.admin" (click)="makeAdmin(user)">Admin</button>
+            <button class="modfier" *ngIf="user.admin" (click)="unmakeAdmin(user)">UnAdmin</button>
+        </td>
 
-
-            </tr>
-        </thead>
-        <tbody *ngFor="let user of users">
-            <tr [ngClass]="{'admin': user.admin,'manager' : user.manager}">
-                <td>{{user.email}}</td>
-                <td>
-                    <button class="modfier" *ngIf="user.ban" (click)="unban(user)">Unban</button>
-                    <button class="modfier" *ngIf="!user.ban" (click)="ban(user)">Ban</button>
-                </td>
-                <td>
-                    <button class="modfier" *ngIf="!user.manager" (click)="makeManager(user)">Give</button>
-                    <button class="modfier" *ngIf="user.manager" (click)="unmakeManager(user)">Remove</button>
-                </td>
-                <td>
-                    <button class="modfier" *ngIf="!user.admin" (click)="makeAdmin(user)">Give</button>
-                    <button class="modfier" *ngIf="user.admin" (click)="unmakeAdmin(user)">Remove</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    </div>
 </section>

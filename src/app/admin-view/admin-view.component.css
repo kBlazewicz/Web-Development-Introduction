@@ -10,11 +10,6 @@ p{
     border-radius: 5px;
 }
 
-.centered{
-    display: flex;
-    align-content: center;
-    justify-content: center;
-}
 
 .table{
     border: 1px solid black;
@@ -33,4 +28,31 @@ p{
 }
 td, th{
     text-align: center;
+}
+
+.wrapper-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 90vw;
+    margin-left: 5vw;
+}
+.wrapper{
+    width: 100vw;
+    margin-top: 3rem;
+}
+.col{
+    grid-column: span 1;
+}
+.row{
+    padding: 0.4rem;
+    border: 1px solid black;
+}
+@media screen and (max-width: 700px) {
+    .wrapper-grid{
+        grid-template-columns: 50% 50%;
+    }
+    .modfier{
+        text-size-adjust: 80%;
+    }
+
 }
