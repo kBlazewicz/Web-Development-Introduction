@@ -1,0 +1,36 @@
+
+p{
+    padding: 10px;
+    text-align: center;
+}
+
+.modfier{
+    background-color: rgb(236, 83, 83);
+    color: white;
+    border-radius: 5px;
+}
+
+.centered{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.table{
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-top: 3rem;
+    width: 96vw;
+}
+
+.admin{
+    color: white;
+    background-color: grey;
+}
+
+.manager{
+    background-color: rgb(209, 209, 209);
+}
+td, th{
+    text-align: center;
+}

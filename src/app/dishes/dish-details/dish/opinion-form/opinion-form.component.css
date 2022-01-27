@@ -27,5 +27,30 @@
   
 .opinions{
   padding: 13px;
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.single{
+  padding: 1rem;
+  width: 50%;  
+  background-color: darkgrey;
+  border-radius: 15px;
+}
+
+.single > p {
+  color: white;
+}
+
+.oeamail{
+  font-weight: bold;
+}
+
+.title{
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

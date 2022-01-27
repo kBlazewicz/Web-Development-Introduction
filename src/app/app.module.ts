@@ -27,7 +27,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { StarComponent } from './dishes/dish-details/star/star.component';
-import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
 import { DishComponent } from './dishes/dish-details/dish/dish.component';
 import { OpinionFormComponent } from './dishes/dish-details/dish/opinion-form/opinion-form.component';
@@ -43,6 +42,7 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
 import { ManagerViewComponent } from './manager-view/manager-view.component';
 import { QuantityButtonsComponent } from './quantity-buttons/quantity-buttons.component';
 import { ModifyDishComponent } from './modify-dish/modify-dish.component';
+
 
 @NgModule({
   declarations: [

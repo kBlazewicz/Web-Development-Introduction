@@ -14,6 +14,7 @@ import { AppUser } from './user';
 })
 export class AuthService {
   admin = false;
+  ban = false;
   manager = false;
   user$!: Observable<firebase.User | null>;
   logged = false;
@@ -89,9 +90,15 @@ export class AuthService {
       .subscribe(admin => this.admin = admin);
   }
 
+  isBanned() {
+    return this.appUser$
+      .pipe(map(user => user.ban))
+      .subscribe(ban => this.ban = ban);
+  }
+
   isManager() {
     return this.appUser$
-      .pipe(map(user => user.manager))
+      .pipe(map(user => (user.manager || user.admin)))
       .subscribe(manager => this.manager = manager);
   }
 

@@ -1,3 +1,4 @@
+import { CartService } from './../../cart.service';
 import { AuthService } from './../../auth.service';
 import { DishListService } from './../../dish-list.service';
 import { Component, Input, OnInit } from '@angular/core';
@@ -30,10 +31,13 @@ export class DishDetailsComponent implements OnInit {
   hoverState = 0;
   dishes: Dish[] = []
   dishID!: string;
+  isRated = false;
+
   constructor(private data: ShoppingCartService,
     private router: Router,
     private dishesService: DishListService,
-    public auth: AuthService) {
+    public auth: AuthService,
+    public cartService: CartService) {
   }
 
   ngOnInit(): void {
@@ -45,10 +49,14 @@ export class DishDetailsComponent implements OnInit {
 
   onStarEnter(starID: number) {
     this.hoverState = starID;
+    this.rating = starID;
+    this.isRated = true;
   }
+
   onStarLeave() {
     this.hoverState = 0;
   }
+
   getDishesList() {
     this.dishesService.getDishesList().snapshotChanges().pipe(
       map(changes =>
@@ -61,6 +69,7 @@ export class DishDetailsComponent implements OnInit {
 
   seeDetails() {
     this.dishesService.updatecurrentDish(this.dish);
+    this.cartService.isInCart(this.dish.key);
     this.router.navigate(['/dishes/dish']);
     console.log("details of dish");
   }

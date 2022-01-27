@@ -1,6 +1,4 @@
-import { ShoppingCartService } from 'src/app/shopping-cart.service';
 import { DishListService } from './dish-list.service';
-import { Dish } from './dishes/dish';
 import { CartDish } from './cart/cart-dish';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
@@ -16,7 +14,7 @@ import { Observable, map, BehaviorSubject } from 'rxjs';
 export class CartService {
   private cartsRef: AngularFirestoreCollection<any>
   user$!: Observable<firebase.User | null>;
-  order!: any;
+  order: CartDish[] = [];
   subscription: any;
   subscription2: any;
   totalQuantity: number = 0;
@@ -25,7 +23,8 @@ export class CartService {
   currentTotalPrice = this.totalPriceSource.asObservable();
   private totalQuantitySource = new BehaviorSubject(0);
   currentTotalQuantity = this.totalQuantitySource.asObservable();
-
+  private isInCartSource = new BehaviorSubject(false);
+  currentIsInCart = this.isInCartSource.asObservable();
 
   constructor(private db: AngularFirestore, private auth: AuthService, private dishList: DishListService) {
     this.cartsRef = this.db.collection('carts');
@@ -45,7 +44,28 @@ export class CartService {
 
     this.totalPriceSource.next(this.totalPrice);
     this.totalQuantitySource.next(this.totalQuantity);
+  }
 
+  isInCartInner(key: string, order: CartDish[]) {
+    let x = false;
+    console.log(this.order.length)
+    order.forEach(element => {
+      console.log(element.key + "      " + key)
+      if (element.key == key) {
+        x = true;
+      }
+    });
+    console.log("isInCartUPDATE", x)
+    this.isInCartSource.next(x);
+  }
+
+  isInCart(key: string) {
+    this.subscription = this.getOrder().snapshotChanges().pipe(
+      map(changes => changes.map(c => ({ key: c.payload.doc.id, ...c.payload.doc.data() })))
+    ).subscribe(items => {
+      this.order = <CartDish[]>items;
+      this.isInCartInner(key, this.order);
+    });
   }
 
   createCart() {
@@ -61,6 +81,8 @@ export class CartService {
       this.calculateNumber(this.order);
     });
   }
+
+
 
   addToCart(dishID: string, name: string) {
     const dishesRef = this.db.collection("carts").doc(this.auth.currentUser.uid).collection("dishes");
@@ -109,6 +131,13 @@ export class CartService {
 
   getTotalPrice() {
     return this.totalPrice;
+  }
+
+  checkout() {
+    const dishesRef = this.db.collection("carts").doc(this.auth.currentUser.uid).collection("dishes");
+    this.order.forEach(element => {
+      dishesRef.doc(element.key).delete();
+    });
   }
 
 }

@@ -19,6 +19,7 @@ export class ShoppingCartService {
   private dishSource = new BehaviorSubject({});
 
 
+
   currentCurrency = this.currencySource.asObservable();
   currentCart = this.cartSource.asObservable();
   currentConverter = this.converterSource.asObservable();
@@ -31,7 +32,6 @@ export class ShoppingCartService {
 
   ngOnInit(): void {
     this.getOrder();
-    console.log(this.order + " <<----order");
   }
 
   changeCurrency(currency: string, converter: number) {

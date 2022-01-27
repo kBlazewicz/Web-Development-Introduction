@@ -2,8 +2,8 @@
 <section class="centered">
     <section class="dishFrame" *ngFor="let dish of dishes">
         <div class="details">
-            <p class="name">{{dish.name}}</p>
-            <p class="limit">left: {{dish.ordersLimit}}</p>
+            <p class="name field">{{dish.name}}</p>
+            <p class="limit field">left: {{dish.ordersLimit}}</p>
             <div class="buttons">
                 <button mat-raised-button class="modifier" (click)="openDialog(dish)">Modify</button>
                 <app-remove-btn [dish]="dish"></app-remove-btn>

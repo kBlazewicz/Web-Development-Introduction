@@ -1,11 +1,8 @@
 import { CartService } from './../cart.service';
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,25 +1,7 @@
 <app-nav-bar></app-nav-bar>
-<button class="btn btn-primary back" (click)="goBack()">BACK</button>
-
-<section class="form-container opinion-form">
+<section class="form-container opinion-form" *ngIf="!auth.manager && isInCart">
     <h3 class="title">Add Review</h3>
     <form [formGroup]="form" (ngSubmit)="submit()" id="reviewform">
-
-        <div class="form-group">
-            <input type="text" class="form-control form-content" formControlName="username" placeholder="Your username">
-            <div *ngIf="form.controls['username'].hasError('required')  && form.controls['username'].touched "
-                class="alert alert-danger">
-                Invalid username
-            </div>
-        </div>
-
-        <div class="form-group">
-            <input type="text" class="form-control form-content" formControlName="dishKey" placeholder="name of dish">
-            <div *ngIf="form.controls['dishKey'].hasError('required')  && form.controls['dishKey'].touched "
-                class="alert alert-danger">
-                Invalid dish name
-            </div>
-        </div>
 
         <div class="form-group">
             <textarea form="reviewform" class="form-control form-content" formControlName="text"
@@ -49,10 +31,17 @@
         </div>
     </form>
 </section>
+<div *ngIf="auth.manager" class="title">
+    <h3>Manager can't leave reviews</h3>
+</div>
 
-
+<div *ngIf="!auth.manager && !isInCart" class="title">
+    <h3>You have to add this item to your cart first</h3>
+</div>
 <section class="opinions" *ngFor="let opinion of opinions">
-    <p>{{opinion.username}}</p>
-    <p>{{opinion.text}}</p>
-    <p>{{opinion.date}}</p>
+    <div class="single">
+        <p class="oemail">{{opinion.email}}</p>
+        <p class="oopinion">{{opinion.opinion}}</p>
+        <p class="odate">{{opinion.date}}</p>
+    </div>
 </section>

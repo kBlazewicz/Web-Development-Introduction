@@ -3,6 +3,7 @@
  text-align: center;
  margin-top: 10px;
 }
+
 .details{
     padding: 5px 2vw;
     margin: 0.8rem;
@@ -23,9 +24,15 @@
     background-color: rgb(209, 209, 59);
     margin-right: 4px;
 }
+
 .buttons{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    text-align: center;
 }
+
 .dishFrame{
     width: 60vw;
     display: flex;
@@ -40,4 +47,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+@media screen and (max-width: 840px) {
+    .dishFrame{
+        width: 95vw;
+        align-items: baseline;
+    }
+    .field{ width: auto;
+    }
+    .buttons{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }

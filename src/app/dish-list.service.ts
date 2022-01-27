@@ -1,10 +1,13 @@
+import { CartService } from './cart.service';
+import { OpinionsService } from './opinions.service';
+import { Opinion } from './dishes/dish-details/dish/opinion-form/opinion';
 
 import 'firebase/compat/auth';
 import firestore from 'firebase/compat/app'
 import { Dish } from './dishes/dish';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from '@angular/core';
-import { map, switchMap, Observable } from 'rxjs';
+import { map, switchMap, Observable, BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -12,15 +15,19 @@ import { map, switchMap, Observable } from 'rxjs';
 })
 export class DishListService {
   dishes!: Dish[];
-  path = '/dishes'
+  path = 'dishes_final'
   currentDish!: Dish;
+  currentDishOpinions: Opinion[] = [];
+
 
   private dishesRef: AngularFirestoreCollection<any>;
 
-  constructor(private db: AngularFirestore) {
-    this.dishesRef = db.collection('dishes');
-    console.log(db.collection('dishes') + "       get dishes")
+  constructor(private db: AngularFirestore, private opionionsService: OpinionsService) {
+    this.dishesRef = db.collection(this.path);
     this.getDishesArray();
+  }
+  getCurrentOpinions() {
+    return this.currentDishOpinions;
   }
 
   updatecurrentDish(update: Dish) {
@@ -43,7 +50,7 @@ export class DishListService {
     return this.dishesRef;
   }
   getDishes() {
-    return this.db.collection('dishes')
+    return this.db.collection(this.path)
 
   }
   createDish(dish: Dish): void {

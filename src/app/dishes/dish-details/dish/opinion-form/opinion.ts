@@ -1,9 +1,9 @@
 import { Data } from "@angular/router";
 
 export interface Opinion {
-    id: number;
-    username: string;
-    text: string;
+    key: string;
+    email: string;
+    opinion: string;
     date: Date | null;
     dishKey: string;
 }

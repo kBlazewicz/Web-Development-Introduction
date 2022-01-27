@@ -46,4 +46,7 @@ export class CartComponent implements OnInit {
     });
   }
 
+  checkout() {
+    this.cartService.checkout();
+  }
 }

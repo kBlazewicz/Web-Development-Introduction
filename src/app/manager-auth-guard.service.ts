@@ -13,6 +13,6 @@ export class ManagerAuthGuardService {
 
   canActivate(route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.auth.appUser$.pipe(map(appUser => appUser.manager));
+    return this.auth.appUser$.pipe(map(appUser => (appUser.manager || appUser.admin)));
   }
 }

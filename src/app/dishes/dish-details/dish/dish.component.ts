@@ -22,6 +22,7 @@ export class DishComponent implements OnInit {
   cart!: number;
   stars = [1, 2, 3, 4, 5]
   rating = 1;
+  isRated = false;
   hoverState = 0;
   filteredOpinions!: Opinion[];
   dish!: Dish;
@@ -37,7 +38,6 @@ export class DishComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.initialOrdersLimit = this.dish.ordersLimit;
     this.service.currentConverter.subscribe(converter => this.converter = converter)
     this.service.currentCurrency.subscribe(currency => this.currency = currency)
@@ -53,6 +53,7 @@ export class DishComponent implements OnInit {
       this.dish.ordersLimit -= 1;
       this.service.cartUpdate(this.cart + 1);
     }
+
   }
 
   minus() {
