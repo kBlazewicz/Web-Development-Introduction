@@ -1,4 +1,16 @@
-Single Page Application made for web development course at AGHust
+#Avielable at kBlazewicz.github.io
+
+##Single Page Application made for web development course at AGHust
+
+##To test manager view log in as manager@gmail.com and password 12345678
+
+
+
+
+
+
+
+
 # Restaurant
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.
