@@ -1,8 +1,8 @@
-#Avielable at kBlazewicz.github.io
+**Avielable at kBlazewicz.github.io**
 
-##Single Page Application made for web development course at AGHust
+Single Page Application made for web development course at AGHust
 
-##To test manager view log in as manager@gmail.com and password 12345678
+To test manager view log in as manager@gmail.com and password 12345678
 
 
 
