@@ -1,11 +1,9 @@
-**Avielable at kBlazewicz.github.io**
+<h1>Available at [RESTAURANT](kblazewicz.github.io)</h1>
 
 Single Page Application made for web development course at AGHust
 
 To test manager view log in as manager@gmail.com and password 12345678
-
-
-
+To test admin view log in as admin@gmail.com and password 12345678
 
 
 
