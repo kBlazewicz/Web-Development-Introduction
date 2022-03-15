@@ -1,4 +1,4 @@
-#Available at [RESTAURANT](https://kblazewicz.github.io)
+# Available at [RESTAURANT](https://kblazewicz.github.io)
 
 Single Page Application made for web development course at AGHust
 
