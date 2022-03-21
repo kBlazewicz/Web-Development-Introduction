@@ -1,9 +1,9 @@
 # Available at [RESTAURANT](https://kblazewicz.github.io)
 
-Single Page Application made for web development course at AGHust
+Single Page Application made using Typescript CSS HTML
 
-To test manager view log in as manager@gmail.com and password 12345678
-To test admin view log in as admin@gmail.com and password 12345678
++ To test manager view log in as manager@gmail.com and password 12345678
++ To test admin view log in as admin@gmail.com and password 12345678
 
 
 
